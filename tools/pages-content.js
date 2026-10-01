@@ -1,0 +1,303 @@
+// Copy for the service and privacy pages, English and Arabic.
+// Edit here, then run:  node tools/build-pages.js
+// Site rules: no country names, no client results or certifications we don't hold,
+// no pricing, "account manager" (never "team lead").
+
+const STEPS = {
+  en: { eyebrow: "How we start", h: "From first call to a running desk.", items: [
+    ["Week 0", "Talk", "A 30-minute call about your channels, volumes and tone of voice."],
+    ["Weeks 1 to 8", "Pilot", "We run one channel inside your tools and send you the numbers every week."],
+    ["After the pilot", "Grow", "Add channels, hours or agents once the results work for you."] ] },
+  ar: { eyebrow: "كيف نبدأ", h: "من أول مكالمة إلى مكتب يعمل.", items: [
+    ["الأسبوع 0", "نتحدث", "مكالمة مدتها 30 دقيقة عن قنواتكم وحجم الرسائل وأسلوبكم."],
+    ["من الأسبوع 1 إلى 8", "نجرّب", "نشغّل قناة واحدة داخل أدواتكم ونرسل لكم الأرقام كل أسبوع."],
+    ["بعد التجربة", "نكبر", "أضيفوا قنوات أو ساعات أو موظفين عندما تقتنعون بالنتائج."] ] },
+};
+
+const SERVICES = [
+  {
+    slug: "customer-support-outsourcing",
+    en: {
+      title: "Arabic & English Customer Support Outsourcing | Zameel",
+      desc: "Outsource Arabic and English customer support to a dedicated Zameel team. Chat, email and voice, in your tools and your hours, with a weekly report.",
+      nav: "Customer support outsourcing",
+      eyebrow: "Customer support outsourcing",
+      h1: "Arabic and English customer support, run as part of your team.",
+      sub: "A dedicated team of native Arabic speakers with fluent English answers your customers on chat, email and phone. They work your hours, inside your helpdesk, and you get a report every week.",
+      introH: "Your customers get answered in their language, in your voice.",
+      intro: [
+        "Customers write in Arabic, switch to English halfway through, and expect a reply in minutes. Most in-house teams can cover one language well, or one shift well. Few can do both without hiring ahead of demand.",
+        "Zameel gives you a bilingual support desk that already knows how to run. We learn your products, your saved replies and your escalation rules, then work your queues as if we sat in your office. You keep the tools, the data and the customer relationship.",
+      ],
+      cardH: "What is included",
+      checks: [
+        "Native Arabic speakers with fluent English on every shift",
+        "Chat, WhatsApp, Instagram, email and voice",
+        "First reply on chat in under 2 minutes, email within 1 hour in covered hours",
+        "Works in Zendesk, Freshdesk, Intercom or your own CRM",
+        "Quality scorecards and coaching on every agent",
+        "A dedicated account manager and a weekly report",
+      ],
+      faqH: "Questions about outsourcing support",
+      faq: [
+        ["What does a customer support outsourcing team handle?", "Order tracking, refunds, complaints, pre-sale questions, account issues and anything else in your support queue. We follow your policies and escalate what needs your team."],
+        ["Will customers know they are talking to an outsourced team?", "Not unless you want them to. Agents use your brand name, your tone and your saved replies, inside your own tools."],
+        ["What is the smallest team we can start with?", "Three seats for three months. Most clients start with a pilot on one channel and add seats once the weekly numbers work for them."],
+        ["How do we keep control of quality?", "Every agent is scored against a quality scorecard, and you get a weekly report on volumes, response times and recurring issues. Your account manager joins a weekly review with you."],
+      ],
+    },
+    ar: {
+      title: "تعهيد خدمة العملاء بالعربية والإنجليزية | زميل",
+      desc: "عهّدوا خدمة عملائكم بالعربية والإنجليزية إلى فريق مخصص من زميل. محادثات وبريد ومكالمات، على أدواتكم وفي ساعات عملكم، مع تقرير أسبوعي.",
+      nav: "تعهيد خدمة العملاء",
+      eyebrow: "تعهيد خدمة العملاء",
+      h1: "خدمة عملاء بالعربية والإنجليزية، تعمل كجزء من فريقكم.",
+      sub: "فريق مخصص من المتحدثين الأصليين بالعربية مع إنجليزية متقنة، يرد على عملائكم عبر المحادثات والبريد والهاتف. يعمل في ساعات عملكم، داخل نظام الدعم لديكم، وتصلكم تقارير أسبوعية.",
+      introH: "عملاؤكم يحصلون على الرد بلغتهم، وبأسلوبكم.",
+      intro: [
+        "يكتب العميل بالعربية، ثم ينتقل إلى الإنجليزية في منتصف المحادثة، وينتظر الرد خلال دقائق. معظم الفرق الداخلية تغطي لغة واحدة جيدًا، أو وردية واحدة جيدًا، وقليل منها يجمع الاثنين دون توظيف مسبق.",
+        "يوفر لكم زميل مكتب دعم ثنائي اللغة يعرف كيف يعمل من اليوم الأول. نتعلم منتجاتكم وردودكم الجاهزة وقواعد التصعيد لديكم، ثم نعمل على طوابير الطلبات كأننا في مكتبكم. تبقى الأدوات والبيانات والعلاقة مع العميل لديكم.",
+      ],
+      cardH: "ما الذي يشمله",
+      checks: [
+        "متحدثون أصليون بالعربية مع إنجليزية متقنة في كل وردية",
+        "المحادثة المباشرة وواتساب وإنستغرام والبريد والمكالمات",
+        "أول رد على المحادثة خلال أقل من دقيقتين، وعلى البريد خلال ساعة في الساعات المغطاة",
+        "نعمل على Zendesk أو Freshdesk أو Intercom أو نظامكم الخاص",
+        "بطاقات تقييم جودة وتدريب لكل موظف",
+        "مدير حساب مخصص وتقرير أسبوعي",
+      ],
+      faqH: "أسئلة عن تعهيد خدمة العملاء",
+      faq: [
+        ["ما الذي يتولاه فريق خدمة العملاء الخارجي؟", "تتبع الطلبات والاسترجاع والشكاوى وأسئلة ما قبل الشراء ومشكلات الحسابات وكل ما يصل إلى طابور الدعم. نتبع سياساتكم ونصعّد ما يحتاج إلى فريقكم."],
+        ["هل سيعرف العملاء أنهم يتحدثون مع فريق خارجي؟", "لا، إلا إذا أردتم ذلك. يعمل الفريق باسم علامتكم وبأسلوبكم وردودكم الجاهزة، داخل أدواتكم."],
+        ["ما أصغر فريق يمكن أن نبدأ به؟", "ثلاثة مقاعد لمدة ثلاثة أشهر. يبدأ معظم العملاء بتجربة على قناة واحدة، ثم يضيفون مقاعد عندما تناسبهم الأرقام الأسبوعية."],
+        ["كيف نحافظ على الجودة؟", "يُقيَّم كل موظف ببطاقة جودة، وتصلكم تقارير أسبوعية عن حجم الطلبات وأوقات الرد والمشكلات المتكررة. ويحضر مدير حسابكم مراجعة أسبوعية معكم."],
+      ],
+    },
+  },
+  {
+    slug: "whatsapp-support",
+    en: {
+      title: "WhatsApp Customer Support Outsourcing in Arabic & English | Zameel",
+      desc: "A Zameel team answers your WhatsApp, Instagram and live chat in Arabic and English, inside your tools. First reply in under 2 minutes in covered hours.",
+      nav: "WhatsApp support",
+      eyebrow: "WhatsApp and chat support",
+      h1: "WhatsApp support that replies in minutes, in Arabic or English.",
+      sub: "Your customers already message you on WhatsApp. A Zameel team answers every chat in the language the customer used, inside your WhatsApp Business setup, with a first reply in under 2 minutes in covered hours.",
+      introH: "Chat is where customers decide whether to buy again.",
+      intro: [
+        "On WhatsApp, a slow reply feels like no reply. Customers send voice notes, switch between Arabic and English, and expect the same warmth they would get in a shop.",
+        "We staff your chat channels with native Arabic speakers who write naturally in both languages. We work through the WhatsApp Business app or the WhatsApp Business Platform connected to your helpdesk, so every conversation stays in your account and your history.",
+      ],
+      cardH: "What is included",
+      checks: [
+        "WhatsApp, Instagram DMs and website live chat",
+        "First reply in under 2 minutes in covered hours",
+        "Replies in the language the customer used, never machine translated",
+        "Your saved replies, tone and escalation rules",
+        "Works with your helpdesk or the WhatsApp Business app",
+        "Weekly report on chat volumes, response times and top issues",
+      ],
+      faqH: "Questions about WhatsApp support",
+      faq: [
+        ["Do you need access to our WhatsApp number?", "We work inside the setup you already have. With the WhatsApp Business Platform connected to a helpdesk, you give us agent logins you control and can remove at any time."],
+        ["Can you handle voice notes and photos?", "Yes. Agents listen to voice notes and review photos the same way your own team would, and escalate anything that needs a decision from you."],
+        ["Which hours can you cover?", "Yours, including evenings, weekends and peak seasons, with Arabic and English on every shift."],
+      ],
+    },
+    ar: {
+      title: "تعهيد دعم العملاء عبر واتساب بالعربية والإنجليزية | زميل",
+      desc: "فريق من زميل يرد على واتساب وإنستغرام والمحادثة المباشرة لديكم بالعربية والإنجليزية، داخل أدواتكم. أول رد خلال أقل من دقيقتين في الساعات المغطاة.",
+      nav: "دعم واتساب",
+      eyebrow: "دعم واتساب والمحادثات",
+      h1: "دعم عبر واتساب يرد خلال دقائق، بالعربية أو الإنجليزية.",
+      sub: "عملاؤكم يراسلونكم على واتساب أصلًا. فريق زميل يرد على كل محادثة باللغة التي استخدمها العميل، داخل حساب واتساب للأعمال لديكم، مع أول رد خلال أقل من دقيقتين في الساعات المغطاة.",
+      introH: "في المحادثة يقرر العميل إن كان سيشتري مرة أخرى.",
+      intro: [
+        "على واتساب، الرد المتأخر يُحسّ كأنه لا رد. يرسل العملاء رسائل صوتية، وينتقلون بين العربية والإنجليزية، وينتظرون اللطف نفسه الذي يجدونه في المتجر.",
+        "نغطي قنوات المحادثة لديكم بمتحدثين أصليين بالعربية يكتبون بطلاقة باللغتين. نعمل عبر تطبيق واتساب للأعمال أو منصة واتساب للأعمال المرتبطة بنظام الدعم لديكم، فتبقى كل محادثة في حسابكم وسجلّكم.",
+      ],
+      cardH: "ما الذي يشمله",
+      checks: [
+        "واتساب ورسائل إنستغرام والمحادثة المباشرة على موقعكم",
+        "أول رد خلال أقل من دقيقتين في الساعات المغطاة",
+        "الرد باللغة التي استخدمها العميل، دون ترجمة آلية",
+        "ردودكم الجاهزة وأسلوبكم وقواعد التصعيد لديكم",
+        "نعمل على نظام الدعم لديكم أو تطبيق واتساب للأعمال",
+        "تقرير أسبوعي عن حجم المحادثات وأوقات الرد وأبرز المشكلات",
+      ],
+      faqH: "أسئلة عن دعم واتساب",
+      faq: [
+        ["هل تحتاجون إلى رقم واتساب الخاص بنا؟", "نعمل داخل الإعداد الموجود لديكم. عند ربط منصة واتساب للأعمال بنظام دعم، تمنحوننا حسابات موظفين تتحكمون بها ويمكنكم إلغاؤها في أي وقت."],
+        ["هل تتعاملون مع الرسائل الصوتية والصور؟", "نعم. يستمع الفريق إلى الرسائل الصوتية ويراجع الصور كما يفعل فريقكم، ويصعّد ما يحتاج إلى قرار منكم."],
+        ["ما الساعات التي تغطونها؟", "ساعات عملكم أنتم، بما في ذلك المساء وعطلات نهاية الأسبوع والمواسم، بالعربية والإنجليزية في كل وردية."],
+      ],
+    },
+  },
+  {
+    slug: "back-office-kyc",
+    en: {
+      title: "Back-Office, KYC & Claims Outsourcing in Arabic & English | Zameel",
+      desc: "Checklist-driven back-office work for regulated teams: KYC checks, claims, policy admin and merchant onboarding, done in your systems by a dedicated Zameel team.",
+      nav: "Back-office and KYC",
+      eyebrow: "Back-office and underwriting",
+      h1: "Back-office, KYC and claims work, done to your checklist.",
+      sub: "A dedicated Zameel team handles document processing, identity checks, claims and policy admin in Arabic and English. Every case is done inside your system, to your checklist, and logged so you can trace it.",
+      introH: "Careful work for teams that answer to a regulator.",
+      intro: [
+        "Back-office queues grow quietly until they slow down onboarding, payouts or renewals. The work needs care more than speed: the right document, the right check, the right note on the file.",
+        "We take your existing procedures and run them as written. Agents work only inside accounts you control, every action is logged in your system, and a data processing agreement is signed before go-live.",
+      ],
+      cardH: "What is included",
+      checks: [
+        "KYC and identity document checks",
+        "Claims intake and policy administration",
+        "Merchant and customer onboarding",
+        "Data entry and case admin in Arabic and English",
+        "Agents work only inside your accounts",
+        "Data processing agreement signed before go-live",
+      ],
+      faqH: "Questions about back-office outsourcing",
+      faq: [
+        ["Where is our data stored?", "In your systems. Agents log in with accounts you control, so documents and case history never leave your environment."],
+        ["Can you follow our existing procedures?", "Yes. We work from your checklists and approval rules, and flag anything that does not fit them instead of guessing."],
+        ["How do you handle confidentiality?", "Every agent signs a confidentiality undertaking, and we sign a data processing agreement with you before any work starts."],
+      ],
+    },
+    ar: {
+      title: "تعهيد الأعمال المكتبية والتحقق من الهوية والمطالبات | زميل",
+      desc: "أعمال مكتبية دقيقة للفرق الخاضعة للتنظيم: التحقق من الهوية والمطالبات وإدارة الوثائق وتسجيل التجار، داخل أنظمتكم وعلى يد فريق مخصص من زميل.",
+      nav: "الأعمال المكتبية والتحقق",
+      eyebrow: "الأعمال المكتبية والاكتتاب",
+      h1: "أعمال مكتبية وتحقق من الهوية ومطالبات، وفق قائمتكم.",
+      sub: "فريق مخصص من زميل يتولى معالجة المستندات والتحقق من الهوية والمطالبات وإدارة الوثائق بالعربية والإنجليزية. تُنجز كل حالة داخل نظامكم، وفق قائمة التحقق لديكم، وتُسجّل بحيث يمكن تتبعها.",
+      introH: "عمل دقيق لفرق تخضع للرقابة.",
+      intro: [
+        "تكبر طوابير الأعمال المكتبية بصمت حتى تبطئ تسجيل العملاء أو صرف المدفوعات أو التجديدات. هذا العمل يحتاج إلى الدقة أكثر من السرعة: المستند الصحيح، والتحقق الصحيح، والملاحظة الصحيحة في الملف.",
+        "نأخذ إجراءاتكم الحالية وننفذها كما هي مكتوبة. يعمل الفريق داخل حسابات تتحكمون بها فقط، وتُسجّل كل خطوة في نظامكم، ونوقّع اتفاقية معالجة بيانات قبل بدء العمل.",
+      ],
+      cardH: "ما الذي يشمله",
+      checks: [
+        "التحقق من الهوية والمستندات",
+        "استقبال المطالبات وإدارة الوثائق",
+        "تسجيل التجار والعملاء",
+        "إدخال البيانات وإدارة الحالات بالعربية والإنجليزية",
+        "الفريق يعمل داخل حساباتكم فقط",
+        "اتفاقية معالجة بيانات موقّعة قبل بدء العمل",
+      ],
+      faqH: "أسئلة عن تعهيد الأعمال المكتبية",
+      faq: [
+        ["أين تُحفظ بياناتنا؟", "في أنظمتكم. يدخل الفريق بحسابات تتحكمون بها، فلا تغادر المستندات وسجل الحالات بيئتكم."],
+        ["هل يمكنكم اتباع إجراءاتنا الحالية؟", "نعم. نعمل وفق قوائم التحقق وقواعد الموافقة لديكم، وننبّه إلى ما لا يتوافق معها بدل التخمين."],
+        ["كيف تتعاملون مع السرية؟", "يوقّع كل موظف تعهدًا بالسرية، ونوقّع معكم اتفاقية معالجة بيانات قبل بدء أي عمل."],
+      ],
+    },
+  },
+  {
+    slug: "peak-season-support",
+    en: {
+      title: "Ramadan & Peak-Season Customer Support Cover | Zameel",
+      desc: "Extra Arabic and English support agents for Ramadan, White Friday and back-to-school. Trained on your products before the rush, scaled back after it.",
+      nav: "Peak-season cover",
+      eyebrow: "Peak-season cover",
+      h1: "Extra support for Ramadan, White Friday and every rush in between.",
+      sub: "Zameel agents are trained on your products before peak week starts, cover the evenings and nights when your customers are most active, and scale back when the rush ends.",
+      introH: "Peak weeks decide your year. Your queue should not.",
+      intro: [
+        "During Ramadan, customers shop late into the night. During White Friday, chat volume can jump in a single afternoon. Hiring and training temporary staff for a few weeks is slow and expensive, and quality usually drops.",
+        "We plan the season with you in advance. Agents learn your products, offers and policies before the rush, work the same quality scorecard as your core team, and report to the same account manager you deal with all year.",
+      ],
+      cardH: "What is included",
+      checks: [
+        "Training finished before peak week",
+        "Evening and night cover as your hours stretch",
+        "Arabic and English on every shift",
+        "Same quality scorecard as your core team",
+        "Same account manager all year",
+        "A clear plan for scaling back after the season",
+      ],
+      faqH: "Questions about peak-season cover",
+      faq: [
+        ["How early should we plan for Ramadan?", "Six to eight weeks before is ideal. That leaves time to agree volumes, train agents on your offers and run a short pilot before the rush."],
+        ["Can we keep the team after the season?", "Yes. You can keep one or two seats year-round, so the people who learned your peak stay with you."],
+        ["Do seasonal agents work in our tools?", "Yes, the same as a core team: your helpdesk, your saved replies and accounts you control."],
+      ],
+    },
+    ar: {
+      title: "دعم العملاء في رمضان والمواسم | زميل",
+      desc: "موظفو دعم إضافيون بالعربية والإنجليزية لرمضان والجمعة البيضاء والعودة إلى المدارس. يُدرَّبون على منتجاتكم قبل الذروة، ويُقلَّص العدد بعدها.",
+      nav: "تغطية المواسم",
+      eyebrow: "تغطية المواسم",
+      h1: "دعم إضافي لرمضان والجمعة البيضاء وكل موسم بينهما.",
+      sub: "يتدرب فريق زميل على منتجاتكم قبل أسبوع الذروة، ويغطي المساء والليل حين يكون عملاؤكم أكثر نشاطًا، ثم يُقلَّص العدد عند انتهاء الموسم.",
+      introH: "أسابيع الذروة تحدد عامكم، فلا تدعوا الطابور يحددها.",
+      intro: [
+        "في رمضان يتسوق العملاء حتى ساعات متأخرة من الليل، وفي الجمعة البيضاء قد يتضاعف حجم المحادثات في عصر واحد. توظيف موظفين مؤقتين وتدريبهم لبضعة أسابيع بطيء ومكلف، وغالبًا ما تنخفض الجودة.",
+        "نخطط للموسم معكم مسبقًا. يتعلم الفريق منتجاتكم وعروضكم وسياساتكم قبل الذروة، ويُقيَّم ببطاقة الجودة نفسها التي يُقيَّم بها فريقكم الأساسي، ويتبع مدير الحساب نفسه الذي تتعاملون معه طوال العام.",
+      ],
+      cardH: "ما الذي يشمله",
+      checks: [
+        "إنهاء التدريب قبل أسبوع الذروة",
+        "تغطية المساء والليل مع امتداد ساعات عملكم",
+        "العربية والإنجليزية في كل وردية",
+        "بطاقة الجودة نفسها التي يُقيَّم بها فريقكم الأساسي",
+        "مدير الحساب نفسه طوال العام",
+        "خطة واضحة لتقليص الفريق بعد الموسم",
+      ],
+      faqH: "أسئلة عن تغطية المواسم",
+      faq: [
+        ["متى نبدأ التخطيط لرمضان؟", "قبل ستة إلى ثمانية أسابيع هو الأفضل. هذا يترك وقتًا للاتفاق على حجم العمل وتدريب الفريق على عروضكم وتشغيل تجربة قصيرة قبل الذروة."],
+        ["هل يمكن الإبقاء على الفريق بعد الموسم؟", "نعم. يمكنكم الإبقاء على مقعد أو اثنين طوال العام، فيبقى معكم من تعلّم موسم الذروة."],
+        ["هل يعمل الفريق الموسمي على أدواتنا؟", "نعم، تمامًا مثل الفريق الأساسي: نظام الدعم لديكم وردودكم الجاهزة وحسابات تتحكمون بها."],
+      ],
+    },
+  },
+];
+
+const PRIVACY = {
+  slug: "privacy",
+  en: {
+    title: "Privacy Policy | Zameel",
+    desc: "How Zameel collects and uses personal data on zameel.cx, including the contact form and website analytics.",
+    h1: "Privacy policy",
+    updated: "Last updated 1 October 2026",
+    body: [
+      ["Who we are", "This policy explains how Zameel (\"we\", \"us\") handles personal data collected through zameel.cx. For any privacy question or request, email <a href=\"mailto:info@zameel.cx\">info@zameel.cx</a>."],
+      ["What we collect", "When you use the contact form we collect your name, company, work email, WhatsApp number (if you give it) and the service you are interested in. When you browse the site, Google Analytics collects usage data such as pages viewed, device type, approximate location and how you arrived, using cookies."],
+      ["Why we use it", "We use contact form details only to reply to your enquiry, arrange a call and, if we work together, manage that relationship. We use analytics data to understand which pages are useful and improve the site. We do not sell your data and we do not use it for advertising profiles."],
+      ["Who we share it with", "We use a small number of service providers to run the site: Vercel (hosting), Resend (sending form emails), Google Workspace (our email) and Google Analytics (site statistics). They process data on our behalf and only for these purposes."],
+      ["How long we keep it", "Enquiries that do not lead to a working relationship are deleted within 24 months. Analytics data is kept for up to 14 months."],
+      ["Your choices and rights", "You can ask us to see, correct or delete the personal data we hold about you, or to stop contacting you, by emailing info@zameel.cx. You can block analytics cookies in your browser settings or with Google's opt-out add-on."],
+      ["Client data", "Data we process for clients while delivering our services is covered by a separate data processing agreement signed with each client, not by this policy."],
+      ["Changes", "If we change this policy we will update the date at the top of this page."],
+    ],
+  },
+  ar: {
+    title: "سياسة الخصوصية | زميل",
+    desc: "كيف يجمع زميل البيانات الشخصية على zameel.cx ويستخدمها، بما في ذلك نموذج التواصل وتحليلات الموقع.",
+    h1: "سياسة الخصوصية",
+    updated: "آخر تحديث: 1 أكتوبر 2026",
+    body: [
+      ["من نحن", "توضح هذه السياسة كيف يتعامل زميل (\"نحن\") مع البيانات الشخصية التي تُجمع عبر zameel.cx. لأي سؤال أو طلب يخص الخصوصية، راسلونا على <a href=\"mailto:info@zameel.cx\" dir=\"ltr\">info@zameel.cx</a>."],
+      ["ما الذي نجمعه", "عند استخدام نموذج التواصل نجمع الاسم والشركة والبريد الإلكتروني للعمل ورقم واتساب (إن أُدخل) والخدمة التي تهمكم. وعند تصفح الموقع، تجمع Google Analytics بيانات استخدام مثل الصفحات التي تمت زيارتها ونوع الجهاز والموقع التقريبي ومصدر الزيارة، باستخدام ملفات تعريف الارتباط."],
+      ["لماذا نستخدمها", "نستخدم بيانات نموذج التواصل فقط للرد على استفساركم وترتيب مكالمة، وإدارة العلاقة إن عملنا معًا. ونستخدم بيانات التحليلات لمعرفة الصفحات المفيدة وتحسين الموقع. لا نبيع بياناتكم ولا نستخدمها لبناء ملفات إعلانية."],
+      ["مع من نشاركها", "نستعين بعدد محدود من مزودي الخدمات لتشغيل الموقع: Vercel (الاستضافة)، وResend (إرسال رسائل النموذج)، وGoogle Workspace (بريدنا)، وGoogle Analytics (إحصاءات الموقع). يعالجون البيانات نيابة عنا ولهذه الأغراض فقط."],
+      ["مدة الاحتفاظ", "تُحذف الاستفسارات التي لا تؤدي إلى تعاون خلال 24 شهرًا. وتُحفظ بيانات التحليلات لمدة أقصاها 14 شهرًا."],
+      ["خياراتكم وحقوقكم", "يمكنكم طلب الاطلاع على بياناتكم الشخصية لدينا أو تصحيحها أو حذفها، أو التوقف عن التواصل معكم، بمراسلة info@zameel.cx. ويمكنكم حظر ملفات تعريف الارتباط الخاصة بالتحليلات من إعدادات المتصفح أو عبر إضافة الإلغاء من Google."],
+      ["بيانات العملاء", "البيانات التي نعالجها لعملائنا أثناء تقديم خدماتنا تخضع لاتفاقية معالجة بيانات منفصلة تُوقّع مع كل عميل، وليس لهذه السياسة."],
+      ["التغييرات", "إذا غيّرنا هذه السياسة سنحدّث التاريخ في أعلى هذه الصفحة."],
+    ],
+  },
+};
+
+const UI = {
+  en: { services: "Services", standards: "Standards", record: "Track record", faq: "FAQ", cta: "Request a call", ctaLong: "Request a discovery call",
+    allServices: "See all services", ctaH: "Tell us where your support hurts.", ctaP: "Share a few details. A senior manager replies within one working day to set up a 30-minute call.",
+    footTag: "Your operations. Our people. One standard.", foot: "Arabic and English customer operations.", privacy: "Privacy", home: "Home", skip: "Skip to content", langName: "العربية", langCode: "ar" },
+  ar: { services: "الخدمات", standards: "المعايير", record: "سجلّنا", faq: "أسئلة شائعة", cta: "اطلب مكالمة", ctaLong: "اطلب مكالمة تعارف",
+    allServices: "كل خدماتنا", ctaH: "أخبرونا أين تتعب خدمة عملائكم.", ctaP: "شاركونا بعض التفاصيل، ويرد عليكم أحد كبار المدراء خلال يوم عمل واحد لترتيب مكالمة مدتها 30 دقيقة.",
+    footTag: "عملياتكم. فريقنا. معيار واحد.", foot: "عمليات خدمة العملاء بالعربية والإنجليزية.", privacy: "الخصوصية", home: "الرئيسية", skip: "تخطَّ إلى المحتوى", langName: "English", langCode: "en" },
+};
+
+module.exports = { SERVICES, PRIVACY, STEPS, UI };

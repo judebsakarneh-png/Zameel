@@ -46,16 +46,7 @@
       "parentOrganization": {"@id": "https://zameel.cx/#org"},
       "description": "Arabic and English customer support, back-office and underwriting outsourcing.",
       "knowsLanguage": ["ar", "en"],
-      "priceRange": "$$",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Outsourcing seats",
-        "itemListElement": [
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Messaging and email support seat"}, "priceSpecification": {"@type": "UnitPriceSpecification", "price": 1600, "priceCurrency": "USD", "unitText": "seat per month"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Voice support seat"}, "priceSpecification": {"@type": "UnitPriceSpecification", "price": 2000, "priceCurrency": "USD", "unitText": "seat per month"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Back-office and underwriting seat"}, "priceSpecification": {"@type": "UnitPriceSpecification", "price": 2200, "priceCurrency": "USD", "unitText": "seat per month"}}
-        ]
-      }
+      "knowsAbout": ["Customer support outsourcing", "WhatsApp customer support", "Back-office and KYC outsourcing", "Peak-season customer support"]
     },
     {
       "@type": "WebSite",
@@ -111,7 +102,7 @@
     </nav>
     <div class="nav-end">
       <a class="lang" id="lang-toggle" href="ar/" hreflang="ar" lang="ar">العربية</a>
-      <a class="btn btn-orange btn-sm" href="#contact" data-t="ctaShort">Book a call</a>
+      <a class="btn btn-orange btn-sm" href="#contact" data-t="ctaShort">Request a call</a>
     </div>
   </div>
 </header>
@@ -124,7 +115,7 @@
         <h1 class="hero-h" data-t="h1" data-html><span>Your operations.</span> <span>Our people.</span> <span class="accent-line">One standard.</span></h1>
         <p class="hero-sub" data-t="heroSub">Native Arabic, fluent English teams who answer your customers, process your cases and report to you every week. They work your hours, inside your own tools.</p>
         <div class="ctas">
-          <a class="btn btn-orange" href="#contact"><span data-t="cta">Book a discovery call</span><svg class="arr" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-orange" href="#contact"><span data-t="cta">Request a discovery call</span><svg class="arr" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="btn btn-ghost" href="#services" data-t="ctaSecondary">See our services</a>
         </div>
         <ul class="hero-facts">
@@ -194,6 +185,7 @@
           <div class="panel-copy">
             <h3 data-t="p0H">Every message answered in the language your customer used.</h3>
             <p data-t="p0P">Your tone, your saved replies, your escalation rules. Refunds, order tracking, complaints and pre-sale questions, handled by people who understand Gulf customers.</p>
+            <a class="more" href="services/customer-support-outsourcing/"><span data-t="more0">More on customer support outsourcing</span><svg class="arr" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <div class="chips" translate="no"><span class="chip">WhatsApp</span><span class="chip">Instagram</span><span class="chip" data-t="chipChat">Live chat</span><span class="chip" data-t="chipEmail">Email</span><span class="chip" data-t="chipVoice">Voice</span></div>
           </div>
           <ul class="checks">
@@ -207,6 +199,7 @@
           <div class="panel-copy">
             <h3 data-t="p1H">Careful, checklist-driven work for regulated teams.</h3>
             <p data-t="p1P">Document processing, KYC checks, claims and policy admin, merchant onboarding. Each case done to your checklist and logged in your system.</p>
+            <a class="more" href="services/back-office-kyc/"><span data-t="more1">More on back-office and KYC</span><svg class="arr" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <div class="chips"><span class="chip" data-t="chipKyc">KYC</span><span class="chip" data-t="chipClaims">Claims</span><span class="chip" data-t="chipPolicy">Policy admin</span><span class="chip" data-t="chipOnb">Merchant onboarding</span></div>
           </div>
           <ul class="checks">
@@ -219,6 +212,7 @@
           <div class="panel-copy">
             <h3 data-t="p2H">Extra hands for the weeks that matter.</h3>
             <p data-t="p2P">Ramadan, White Friday and back-to-school. Agents trained on your products before the rush starts, then scaled back when it ends.</p>
+            <a class="more" href="services/peak-season-support/"><span data-t="more2">More on peak-season cover</span><svg class="arr" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <div class="chips"><span class="chip" data-t="chipRamadan">Ramadan</span><span class="chip" data-t="chipWhite">White Friday</span><span class="chip" data-t="chipSchool">Back-to-school</span></div>
           </div>
           <ul class="checks">
@@ -339,8 +333,8 @@
         </div>
         <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
         <div class="form-foot">
-          <button class="btn btn-orange" type="submit"><span data-t="ctaSend">Book my call</span><svg class="arr" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          <small data-t="formNote">We reply within one working day.</small>
+          <button class="btn btn-orange" type="submit"><span data-t="ctaSend">Request my call</span><svg class="arr" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <small><span data-t="formNote">We reply within one working day.</span> <a href="privacy/" data-t="formPriv">Privacy policy</a></small>
         </div>
         <div class="done" id="done" role="status" hidden data-t="done">Thank you. A senior manager will reply within one working day.</div>
       </form>
@@ -359,7 +353,11 @@
     <nav class="foot-links" aria-label="Footer">
       <a href="#services" data-t="navServices">Services</a>
       <a href="#standards" data-t="navStandards">Standards</a>
-      <a href="#contact" data-t="ctaShort">Book a call</a>
+      <a href="services/customer-support-outsourcing/" data-t="fs1">Customer support outsourcing</a>
+      <a href="services/whatsapp-support/" data-t="fs2">WhatsApp support</a>
+      <a href="services/back-office-kyc/" data-t="fs3">Back-office and KYC</a>
+      <a href="services/peak-season-support/" data-t="fs4">Peak-season cover</a>
+      <a href="privacy/" data-t="fPriv">Privacy</a>
     </nav>
     <p class="foot-meta"><span data-t="foot">Arabic and English customer operations.</span> <span>© <span id="yr">2026</span> Zameel</span></p>
   </div>
