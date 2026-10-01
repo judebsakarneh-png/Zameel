@@ -26,7 +26,7 @@
   function dict() { return cur === "ar" ? AR : EN; }
 
   /* ---------- Google Analytics (GA4). Put the Measurement ID (G-XXXXXXXXXX) here to switch it on. ---------- */
-  var GA_ID = "";
+  var GA_ID = "G-NY7GP3VSQ2";
   function gaEvent(name, params) { if (window.gtag) window.gtag("event", name, params || {}); }
   if (GA_ID && /^(www\.)?zameel\.cx$/.test(location.hostname)) {
     window.dataLayer = window.dataLayer || [];
