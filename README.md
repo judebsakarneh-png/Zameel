@@ -58,6 +58,10 @@ node tools/build-ar.js
 
 The Arabic page is a real, separate URL (`/ar/`) so Google indexes the Arabic text. Both pages point at each other with hreflang tags, and the language button links between them.
 
+## Google Analytics
+
+Set `GA_ID` at the top of the Google Analytics block in `assets/js/main.js` to your GA4 Measurement ID (`G-XXXXXXXXXX`) and push. It only loads on zameel.cx (not on vercel.app previews), and each successful form submission is sent as a `generate_lead` event. In GA4, mark `generate_lead` as a key event.
+
 ## After launch (SEO)
 
 1. Add the site to Google Search Console (domain property `zameel.cx`, verify with a DNS TXT record at Namecheap) and submit `https://zameel.cx/sitemap.xml`.
