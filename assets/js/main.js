@@ -1,5 +1,5 @@
 /* Zameel site behaviour: language switch, chat replay, pinned logo scene,
-   service tabs, before/after slider, track-record bars, pricing calculator, contact form. */
+   service tabs, before/after slider, track-record bars, contact form. */
 (function () {
   "use strict";
 
@@ -41,7 +41,7 @@
     langBtn.lang = l === "ar" ? "en" : "ar";
     langBtn.setAttribute("aria-label", d.langLabel);
     var e = document.getElementById("e-email"); if (e && e.textContent) e.textContent = d.emailErr;
-    drawScrub(); drawCalc();
+    drawScrub();
     if (typeof measureOrbit === "function") requestAnimationFrame(measureOrbit);
     try { localStorage.setItem("zameel-lang", l); } catch (_) {}
   }
@@ -76,33 +76,6 @@
     document.getElementById("lb-after").classList.toggle("on", t >= 0.5);
   }
   if (scrub) scrub.addEventListener("input", drawScrub);
-
-  /* ---------- Pricing calculator ---------- */
-  var seatCount = document.getElementById("seat-count");
-  var seatRange = document.getElementById("seat-range");
-  var MIN = 3, MAX = 60;
-  function money(n) { return "$" + n.toLocaleString("en-US"); }
-  function seatsVal() { var n = parseInt(seatCount.value, 10); return isNaN(n) ? MIN : Math.min(MAX, Math.max(MIN, n)); }
-  function drawCalc() {
-    if (!seatCount) return;
-    var n = seatsVal();
-    var rate = parseInt((document.querySelector('input[name="seat"]:checked') || {}).value || 1600, 10);
-    var d = dict();
-    document.getElementById("out-month").textContent = money(n * rate);
-    var word = cur === "ar" ? (n > 10 ? d.seatsWordMany : d.seatsWord) : d.seatsWord;
-    document.getElementById("out-rate").textContent = n + " " + word + " × " + money(rate);
-    seatRange.value = Math.min(n, +seatRange.max);
-    seatRange.style.setProperty("--p", ((Math.min(n, +seatRange.max) - MIN) / (+seatRange.max - MIN) * 100) + "%");
-  }
-  function setSeats(n) { seatCount.value = Math.min(MAX, Math.max(MIN, n)); drawCalc(); }
-  if (seatCount) {
-    document.getElementById("seat-dec").addEventListener("click", function () { setSeats(seatsVal() - 1); });
-    document.getElementById("seat-inc").addEventListener("click", function () { setSeats(seatsVal() + 1); });
-    seatRange.addEventListener("input", function () { setSeats(+seatRange.value); });
-    seatCount.addEventListener("input", drawCalc);
-    seatCount.addEventListener("blur", function () { setSeats(seatsVal()); });
-    Array.prototype.forEach.call(document.querySelectorAll('input[name="seat"]'), function (r) { r.addEventListener("change", drawCalc); });
-  }
 
   /* ---------- Service tabs ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
@@ -287,7 +260,7 @@
     setLang(start);
   } else {
     cur = root.lang === "ar" ? "ar" : "en";
-    drawScrub(); drawCalc();
+    drawScrub();
   }
   onNav();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureOrbit);

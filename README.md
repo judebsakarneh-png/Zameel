@@ -47,8 +47,6 @@ The form posts JSON to `/api/contact`. A hidden `website` field catches bots: if
 ## Before going live, check
 
 - **Contact form.** Leads go to `CONTACT_TO` (default `info@zameel.cx`). Make sure that mailbox (or an alias) exists in Google Workspace, and send one test submission after launch.
-- **Track record section** (`#record`). Uses the leadership's QA scorecard medians, labelled as work outside Zameel. Remove the section if you'd rather not publish them.
-- **Copy rules.** No client results, no certifications Zameel doesn't hold ("roadmap" only), no headcount, "account manager" rather than "team lead".
 
 ## Editing text
 

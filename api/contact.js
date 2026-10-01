@@ -117,7 +117,7 @@ module.exports = async function handler(req, res) {
 
   // The lead is safe in the inbox at this point; a failed confirmation is logged but not shown as an error.
   try {
-    const c = confirmation(name, "en"); // English only, per Jude; pass body.lang to match the page instead
+    const c = confirmation(name, "en"); // English only; pass body.lang to match the page language instead
     await send(key, {
       from: process.env.CONFIRM_FROM || "Zameel <info@zameel.cx>",
       to: [email],
