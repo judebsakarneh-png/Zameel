@@ -30,7 +30,7 @@ html = html
   .replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${esc(AR.metaDesc)}">`)
   .replace('<a class="lang" id="lang-toggle" href="ar/" hreflang="ar" lang="ar">العربية</a>', '<a class="lang" id="lang-toggle" href="../" hreflang="en" lang="en">English</a>')
   // relative paths from /ar/
-  .replace(/(src|href)="(assets\/|favicon\.svg)/g, '$1="../$2');
+  .replace(/(src|href)="(assets\/|favicon\.svg|favicon\.ico|apple-touch-icon\.png|site\.webmanifest)/g, '$1="../$2');
 
 fs.mkdirSync(path.join(root, "ar"), { recursive: true });
 fs.writeFileSync(path.join(root, "ar/index.html"), html);
