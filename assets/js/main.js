@@ -16,8 +16,8 @@
   });
   EN.emailErr = "Enter a valid email, like name@company.com";
   EN.nameErr = "Enter your name.";
-  EN.sendErr = "That didn't send. Email us directly at hello@zameel.cx";
-  EN.mailOpen = "Your email app should open with these details. If it doesn't, email hello@zameel.cx";
+  EN.sendErr = "That didn't send. Email us directly at info@zameel.cx";
+  EN.mailOpen = "Your email app should open with these details. If it doesn't, email info@zameel.cx";
   EN.was = "was"; EN.seatsWord = "seats"; EN.seatsWordMany = "seats";
   EN.langBtn = "العربية"; EN.langLabel = "التبديل إلى العربية";
   ariaNodes.forEach(function (n) { var k = n.getAttribute("data-ta"); if (!(k in EN)) EN[k] = n.getAttribute("aria-label"); });
@@ -247,7 +247,7 @@
 
   /* ---------- Contact form ----------
      data-endpoint="/api/contact" posts JSON to the Vercel function in api/contact.js, which emails via Resend.
-     With an empty data-endpoint, the form opens the visitor's email app addressed to hello@zameel.cx. */
+     With an empty data-endpoint, the form opens the visitor's email app addressed to info@zameel.cx. */
   var form = document.getElementById("lead");
   form.addEventListener("submit", function (ev) {
     ev.preventDefault();
@@ -274,7 +274,7 @@
       var body = ["Name: " + name.value, "Company: " + document.getElementById("f-company").value, "Email: " + em.value,
         "WhatsApp: " + document.getElementById("f-wa").value, "Need: " + document.getElementById("f-need").value].join("\n");
       done.textContent = d.mailOpen; done.hidden = false;
-      window.location.href = "mailto:hello@zameel.cx?subject=" + encodeURIComponent("Discovery call request") + "&body=" + encodeURIComponent(body);
+      window.location.href = "mailto:info@zameel.cx?subject=" + encodeURIComponent("Discovery call request") + "&body=" + encodeURIComponent(body);
     }
   });
 

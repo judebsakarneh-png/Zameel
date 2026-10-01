@@ -2,7 +2,7 @@
 // Sends the website contact form to the Zameel inbox through Resend (https://resend.com).
 // Environment variables (Vercel > Project > Settings > Environment Variables):
 //   RESEND_API_KEY  required, from resend.com > API Keys
-//   CONTACT_TO      optional, inbox that receives leads (default hello@zameel.cx)
+//   CONTACT_TO      optional, inbox that receives leads (default info@zameel.cx)
 //   CONTACT_FROM    optional, verified sender (default "Zameel website <website@zameel.cx>")
 
 function clean(v, max) {
@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
       headers: { Authorization: "Bearer " + key, "Content-Type": "application/json" },
       body: JSON.stringify({
         from: process.env.CONTACT_FROM || "Zameel website <website@zameel.cx>",
-        to: [process.env.CONTACT_TO || "hello@zameel.cx"],
+        to: [process.env.CONTACT_TO || "info@zameel.cx"],
         reply_to: email,
         subject: "Discovery call request: " + (company || name),
         text,
