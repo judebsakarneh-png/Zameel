@@ -25,19 +25,8 @@
   var cur = "en";
   function dict() { return cur === "ar" ? AR : EN; }
 
-  /* ---------- Google Analytics (GA4). Put the Measurement ID (G-XXXXXXXXXX) here to switch it on. ---------- */
-  var GA_ID = "G-NY7GP3VSQ2";
+  /* ---------- Analytics: loaded by consent.js (cookies only after Accept) ---------- */
   function gaEvent(name, params) { if (window.gtag) window.gtag("event", name, params || {}); }
-  if (GA_ID && /^(www\.)?zameel\.cx$/.test(location.hostname)) {
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { window.dataLayer.push(arguments); };
-    window.gtag("js", new Date());
-    window.gtag("config", GA_ID);
-    var gs = document.createElement("script");
-    gs.async = true;
-    gs.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-    document.head.appendChild(gs);
-  }
 
   /* ---------- Language ---------- */
   var langBtn = document.getElementById("lang-toggle");

@@ -97,11 +97,13 @@ function foot(lang) {
     <nav class="foot-links" aria-label="Footer">
 ${links}
       <a href="${url(lang, "privacy")}">${esc(u.privacy)}</a>
+      <a href="#" id="cookie-settings">${esc(u.cookies)}</a>
     </nav>
     <p class="foot-meta"><span>${esc(u.foot)}</span> <span>© <span id="yr">2026</span> Zameel</span></p>
   </div>
 </footer>
 
+<script src="/assets/js/consent.js"></script>
 <script src="/assets/js/page.js"></script>
 </body>
 </html>

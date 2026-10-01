@@ -264,11 +264,11 @@ const PRIVACY = {
     updated: "Last updated 1 October 2026",
     body: [
       ["Who we are", "This policy explains how Zameel (\"we\", \"us\") handles personal data collected through zameel.cx. For any privacy question or request, email <a href=\"mailto:info@zameel.cx\">info@zameel.cx</a>."],
-      ["What we collect", "When you use the contact form we collect your name, company, work email, WhatsApp number (if you give it) and the service you are interested in. When you browse the site, Google Analytics collects usage data such as pages viewed, device type, approximate location and how you arrived, using cookies."],
+      ["What we collect", "When you use the contact form we collect your name, company, work email, WhatsApp number (if you give it) and the service you are interested in. When you browse the site, Google Analytics collects usage data such as pages viewed, device type, approximate location and how you arrived, using cookies, but only after you accept them."],
       ["Why we use it", "We use contact form details only to reply to your enquiry, arrange a call and, if we work together, manage that relationship. We use analytics data to understand which pages are useful and improve the site. We do not sell your data and we do not use it for advertising profiles."],
       ["Who we share it with", "We use a small number of service providers to run the site: Vercel (hosting), Resend (sending form emails), Google Workspace (our email) and Google Analytics (site statistics). They process data on our behalf and only for these purposes."],
       ["How long we keep it", "Enquiries that do not lead to a working relationship are deleted within 24 months. Analytics data is kept for up to 14 months."],
-      ["Your choices and rights", "You can ask us to see, correct or delete the personal data we hold about you, or to stop contacting you, by emailing info@zameel.cx. You can block analytics cookies in your browser settings or with Google's opt-out add-on."],
+      ["Your choices and rights", "You can ask us to see, correct or delete the personal data we hold about you, or to stop contacting you, by emailing info@zameel.cx. Analytics cookies are only set if you click Accept on the cookie banner. You can change your choice at any time with the Cookie settings link at the bottom of every page."],
       ["Client data", "Data we process for clients while delivering our services is covered by a separate data processing agreement signed with each client, not by this policy."],
       ["Changes", "If we change this policy we will update the date at the top of this page."],
     ],
@@ -280,11 +280,11 @@ const PRIVACY = {
     updated: "آخر تحديث: 1 أكتوبر 2026",
     body: [
       ["من نحن", "توضح هذه السياسة كيف يتعامل زميل (\"نحن\") مع البيانات الشخصية التي تُجمع عبر zameel.cx. لأي سؤال أو طلب يخص الخصوصية، راسلونا على <a href=\"mailto:info@zameel.cx\" dir=\"ltr\">info@zameel.cx</a>."],
-      ["ما الذي نجمعه", "عند استخدام نموذج التواصل نجمع الاسم والشركة والبريد الإلكتروني للعمل ورقم واتساب (إن أُدخل) والخدمة التي تهمكم. وعند تصفح الموقع، تجمع Google Analytics بيانات استخدام مثل الصفحات التي تمت زيارتها ونوع الجهاز والموقع التقريبي ومصدر الزيارة، باستخدام ملفات تعريف الارتباط."],
+      ["ما الذي نجمعه", "عند استخدام نموذج التواصل نجمع الاسم والشركة والبريد الإلكتروني للعمل ورقم واتساب (إن أُدخل) والخدمة التي تهمكم. وعند تصفح الموقع، تجمع Google Analytics بيانات استخدام مثل الصفحات التي تمت زيارتها ونوع الجهاز والموقع التقريبي ومصدر الزيارة، باستخدام ملفات تعريف الارتباط، وذلك فقط بعد موافقتكم."],
       ["لماذا نستخدمها", "نستخدم بيانات نموذج التواصل فقط للرد على استفساركم وترتيب مكالمة، وإدارة العلاقة إن عملنا معًا. ونستخدم بيانات التحليلات لمعرفة الصفحات المفيدة وتحسين الموقع. لا نبيع بياناتكم ولا نستخدمها لبناء ملفات إعلانية."],
       ["مع من نشاركها", "نستعين بعدد محدود من مزودي الخدمات لتشغيل الموقع: Vercel (الاستضافة)، وResend (إرسال رسائل النموذج)، وGoogle Workspace (بريدنا)، وGoogle Analytics (إحصاءات الموقع). يعالجون البيانات نيابة عنا ولهذه الأغراض فقط."],
       ["مدة الاحتفاظ", "تُحذف الاستفسارات التي لا تؤدي إلى تعاون خلال 24 شهرًا. وتُحفظ بيانات التحليلات لمدة أقصاها 14 شهرًا."],
-      ["خياراتكم وحقوقكم", "يمكنكم طلب الاطلاع على بياناتكم الشخصية لدينا أو تصحيحها أو حذفها، أو التوقف عن التواصل معكم، بمراسلة info@zameel.cx. ويمكنكم حظر ملفات تعريف الارتباط الخاصة بالتحليلات من إعدادات المتصفح أو عبر إضافة الإلغاء من Google."],
+      ["خياراتكم وحقوقكم", "يمكنكم طلب الاطلاع على بياناتكم الشخصية لدينا أو تصحيحها أو حذفها، أو التوقف عن التواصل معكم، بمراسلة info@zameel.cx. ولا تُستخدم ملفات تعريف الارتباط الخاصة بالتحليلات إلا إذا ضغطتم \"موافق\" في شريط ملفات تعريف الارتباط، ويمكنكم تغيير اختياركم في أي وقت من رابط \"إعدادات ملفات تعريف الارتباط\" أسفل كل صفحة."],
       ["بيانات العملاء", "البيانات التي نعالجها لعملائنا أثناء تقديم خدماتنا تخضع لاتفاقية معالجة بيانات منفصلة تُوقّع مع كل عميل، وليس لهذه السياسة."],
       ["التغييرات", "إذا غيّرنا هذه السياسة سنحدّث التاريخ في أعلى هذه الصفحة."],
     ],
@@ -294,10 +294,10 @@ const PRIVACY = {
 const UI = {
   en: { services: "Services", standards: "Standards", record: "Track record", faq: "FAQ", cta: "Request a call", ctaLong: "Request a discovery call",
     allServices: "See all services", ctaH: "Tell us where your support hurts.", ctaP: "Share a few details. A senior manager replies within one working day to set up a 30-minute call.",
-    footTag: "Your operations. Our people. One standard.", foot: "Arabic and English customer operations.", privacy: "Privacy", home: "Home", skip: "Skip to content", langName: "العربية", langCode: "ar" },
+    footTag: "Your operations. Our people. One standard.", foot: "Arabic and English customer operations.", privacy: "Privacy", cookies: "Cookie settings", home: "Home", skip: "Skip to content", langName: "العربية", langCode: "ar" },
   ar: { services: "الخدمات", standards: "المعايير", record: "سجلّنا", faq: "أسئلة شائعة", cta: "اطلب مكالمة", ctaLong: "اطلب مكالمة تعارف",
     allServices: "كل خدماتنا", ctaH: "أخبرونا أين تتعب خدمة عملائكم.", ctaP: "شاركونا بعض التفاصيل، ويرد عليكم أحد كبار المدراء خلال يوم عمل واحد لترتيب مكالمة مدتها 30 دقيقة.",
-    footTag: "عملياتكم. فريقنا. معيار واحد.", foot: "عمليات خدمة العملاء بالعربية والإنجليزية.", privacy: "الخصوصية", home: "الرئيسية", skip: "تخطَّ إلى المحتوى", langName: "English", langCode: "en" },
+    footTag: "عملياتكم. فريقنا. معيار واحد.", foot: "عمليات خدمة العملاء بالعربية والإنجليزية.", privacy: "الخصوصية", cookies: "إعدادات ملفات تعريف الارتباط", home: "الرئيسية", skip: "تخطَّ إلى المحتوى", langName: "English", langCode: "en" },
 };
 
 module.exports = { SERVICES, PRIVACY, STEPS, UI };

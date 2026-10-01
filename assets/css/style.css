@@ -401,3 +401,11 @@ html[lang="ar"] .page-h{letter-spacing:0;line-height:1.35}
 .legal h2{font-size:22px;font-weight:700;color:var(--navy);margin:36px 0 10px}
 .legal p{color:var(--ink-2)}
 .legal a{color:var(--navy)}
+
+/* Cookie consent banner */
+.consent{position:fixed;z-index:60;inset-inline:16px;bottom:16px;max-width:560px;background:var(--navy);color:var(--on-navy);border-radius:var(--r-md);padding:18px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;box-shadow:0 24px 48px -20px rgba(14,29,112,.55);font-size:14.5px;line-height:1.5}
+.consent p{flex:1 1 260px}
+.consent a{color:#fff}
+.consent-btns{display:flex;gap:10px}
+.consent .consent-no{background:transparent;color:#fff;border-color:var(--navy-3)}
+.consent .consent-no:hover{border-color:#fff}
