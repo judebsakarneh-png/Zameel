@@ -38,7 +38,7 @@ The site is static, but the contact form needs a small server function (`api/con
    - `CONTACT_FROM` = sender of the lead email (optional, default `Zameel website <website@zameel.cx>`)
    - `CONFIRM_FROM` = sender of the visitor's confirmation (optional, default `Zameel <info@zameel.cx>`)
 4. **Domain.** Vercel project > Settings > Domains > add `zameel.cx` and `www.zameel.cx`. Add the records Vercel shows in Namecheap (usually an `A` record for `@` and a `CNAME` for `www`). Remove any Namecheap parking or URL-redirect records and any old GitHub Pages `A` records. Keep the Google Workspace MX records.
-5. **Test.** Submit the form on the live site. The email arrives at `CONTACT_TO` with Reply-To set to the visitor, so hitting Reply answers them directly. The visitor also gets a branded confirmation in the page's language (English or Arabic) from info@zameel.cx; if that one fails, the lead is still delivered and the error shows in Vercel > Logs. If it fails, check Vercel > Logs for "Resend error".
+5. **Test.** Submit the form on the live site. The email arrives at `CONTACT_TO` with Reply-To set to the visitor, so hitting Reply answers them directly. The visitor also gets a branded English confirmation from info@zameel.cx; if that one fails, the lead is still delivered and the error shows in Vercel > Logs. If it fails, check Vercel > Logs for "Resend error".
 
 Every push to `main` redeploys automatically. Changing an environment variable needs a redeploy (Deployments > ... > Redeploy).
 

@@ -15,7 +15,7 @@ function esc(s) {
 }
 
 
-// Confirmation sent to the visitor, in the language of the page they used.
+// Confirmation sent to the visitor (English; an Arabic version is kept below if ever wanted).
 // Only the first name is echoed back, and never if it looks like a link, so the form can't be used to relay spam.
 function confirmation(name, lang) {
   const site = (process.env.SITE_URL || "https://zameel.cx").replace(/\/$/, "");
@@ -117,7 +117,7 @@ module.exports = async function handler(req, res) {
 
   // The lead is safe in the inbox at this point; a failed confirmation is logged but not shown as an error.
   try {
-    const c = confirmation(name, body.lang);
+    const c = confirmation(name, "en"); // English only, per Jude; pass body.lang to match the page instead
     await send(key, {
       from: process.env.CONFIRM_FROM || "Zameel <info@zameel.cx>",
       to: [email],
