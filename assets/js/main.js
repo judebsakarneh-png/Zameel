@@ -27,7 +27,7 @@
 
   /* ---------- Google Analytics (GA4). Put the Measurement ID (G-XXXXXXXXXX) here to switch it on. ---------- */
   var GA_ID = "";
-  function track(name, params) { if (window.gtag) window.gtag("event", name, params || {}); }
+  function gaEvent(name, params) { if (window.gtag) window.gtag("event", name, params || {}); }
   if (GA_ID && /^(www\.)?zameel\.cx$/.test(location.hostname)) {
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
@@ -254,7 +254,7 @@
       var btn = form.querySelector('button[type="submit"]');
       btn.disabled = true;
       fetch(endpoint, { method: "POST", body: JSON.stringify(payload), headers: { "Content-Type": "application/json", Accept: "application/json" } })
-        .then(function (r) { if (!r.ok) throw new Error(r.status); done.textContent = d.done; done.hidden = false; form.reset(); track("generate_lead", { form: "discovery_call", page_language: cur }); })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); done.textContent = d.done; done.hidden = false; form.reset(); gaEvent("generate_lead", { form: "discovery_call", page_language: cur }); })
         .catch(function () { done.textContent = d.sendErr; done.hidden = false; })
         .then(function () { btn.disabled = false; });
     } else {
