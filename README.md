@@ -13,7 +13,8 @@ robots.txt, sitemap.xml, 404.html
 tools/build-ar.js       rebuilds ar/index.html
 assets/brand/           logo files, recoloured to the brand guide (Navy #0E1D70, Signal Orange #F66747)
 favicon.svg             navy app icon
-CNAME                   custom domain for GitHub Pages (zameel.cx)
+api/contact.js          Vercel function: emails form submissions through Resend
+CNAME                   only used if hosted on GitHub Pages; Vercel ignores it
 ```
 
 ## Preview locally
@@ -21,31 +22,30 @@ CNAME                   custom domain for GitHub Pages (zameel.cx)
 ```
 cd website
 python3 -m http.server 8000
+# the form needs Vercel to send; locally use `npx vercel dev` with RESEND_API_KEY set
 # open http://localhost:8000 (English) and http://localhost:8000/ar/ (Arabic)
 ```
 
-## Publish on GitHub Pages
+## Publish on Vercel (site + contact form)
 
-1. Create an empty repository on GitHub (for example `zameel-site`).
-2. From this folder:
-   ```
-   git init
-   git add .
-   git commit -m "Zameel website"
-   git branch -M main
-   git remote add origin https://github.com/<your-account>/zameel-site.git
-   git push -u origin main
-   ```
-3. On GitHub: Settings > Pages > Source: "Deploy from a branch", branch `main`, folder `/ (root)`.
-4. Custom domain: the `CNAME` file already says `zameel.cx`. At Namecheap (Domain List > zameel.cx > Advanced DNS) add:
-   - four `A` records for host `@`: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
-   - one `CNAME` record for host `www` pointing to `<your-account>.github.io.`
-   Then tick "Enforce HTTPS" in Settings > Pages once the certificate is issued.
-   Remove any Namecheap parking or URL-redirect records first. Keep the Google Workspace MX records as they are.
+The site is static, but the contact form needs a small server function (`api/contact.js`) to send email through Resend without exposing the API key. Vercel runs both from this repo with no configuration.
+
+1. **Resend.** Sign up at resend.com. Domains > Add domain > `zameel.cx`. Resend shows a few DNS records (an MX and a TXT on `send.zameel.cx`, and a DKIM TXT on `resend._domainkey`). Add each one in Namecheap (Domain List > zameel.cx > Advanced DNS) and click Verify in Resend. These live on subdomains, so they don't touch the Google Workspace MX records.
+2. **API key.** Resend > API Keys > Create, permission "Sending access", domain `zameel.cx`. Copy it once.
+3. **Vercel.** Sign up at vercel.com with GitHub. Add New > Project > import `Zameel`. Framework preset "Other", no build command, output directory left empty. Before deploying, add Environment Variables:
+   - `RESEND_API_KEY` = the key from step 2 (required)
+   - `CONTACT_TO` = inbox that receives leads (optional, default `hello@zameel.cx`)
+   - `CONTACT_FROM` = sender, for example `Zameel website <website@zameel.cx>` (optional; must be on the verified domain)
+4. **Domain.** Vercel project > Settings > Domains > add `zameel.cx` and `www.zameel.cx`. Add the records Vercel shows in Namecheap (usually an `A` record for `@` and a `CNAME` for `www`). Remove any Namecheap parking or URL-redirect records and any old GitHub Pages `A` records. Keep the Google Workspace MX records.
+5. **Test.** Submit the form on the live site. The email arrives at `CONTACT_TO` with Reply-To set to the visitor, so hitting Reply answers them directly. If it fails, check Vercel > Logs for "Resend error".
+
+Every push to `main` redeploys automatically. Changing an environment variable needs a redeploy (Deployments > ... > Redeploy).
+
+The form posts JSON to `/api/contact`. A hidden `website` field catches bots: if it's filled, the function returns OK and sends nothing. If you ever host somewhere without functions (GitHub Pages), set `data-endpoint=""` on `<form id="lead">` and the form falls back to opening the visitor's email app addressed to `hello@zameel.cx`.
 
 ## Before going live, check
 
-- **Contact form.** By default it opens the visitor's email app addressed to `hello@zameel.cx`. Make sure that mailbox (or an alias) exists in Google Workspace. To collect submissions without email, create a free form endpoint (for example Formspree) and put its URL in `data-endpoint=""` on the `<form id="lead">` tag in `index.html`.
+- **Contact form.** Leads go to `CONTACT_TO` (default `hello@zameel.cx`). Make sure that mailbox (or an alias) exists in Google Workspace, and send one test submission after launch.
 - **Track record section** (`#record`). Uses the leadership's QA scorecard medians, labelled as work outside Zameel. Remove the section if you'd rather not publish them.
 - **Copy rules.** No client results, no certifications Zameel doesn't hold ("roadmap" only), no headcount, "account manager" rather than "team lead".
 

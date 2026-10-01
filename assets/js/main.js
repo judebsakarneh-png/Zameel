@@ -246,8 +246,8 @@
   }
 
   /* ---------- Contact form ----------
-     Set data-endpoint on the form (for example a Formspree URL) to post submissions.
-     Without one, the form opens the visitor's email app addressed to hello@zameel.cx. */
+     data-endpoint="/api/contact" posts JSON to the Vercel function in api/contact.js, which emails via Resend.
+     With an empty data-endpoint, the form opens the visitor's email app addressed to hello@zameel.cx. */
   var form = document.getElementById("lead");
   form.addEventListener("submit", function (ev) {
     ev.preventDefault();
@@ -261,9 +261,15 @@
     var done = document.getElementById("done");
     var endpoint = form.getAttribute("data-endpoint");
     if (endpoint) {
-      fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      var payload = {};
+      new FormData(form).forEach(function (v, k) { payload[k] = v; });
+      payload.lang = cur;
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      fetch(endpoint, { method: "POST", body: JSON.stringify(payload), headers: { "Content-Type": "application/json", Accept: "application/json" } })
         .then(function (r) { if (!r.ok) throw new Error(r.status); done.textContent = d.done; done.hidden = false; form.reset(); })
-        .catch(function () { done.textContent = d.sendErr; done.hidden = false; });
+        .catch(function () { done.textContent = d.sendErr; done.hidden = false; })
+        .then(function () { btn.disabled = false; });
     } else {
       var body = ["Name: " + name.value, "Company: " + document.getElementById("f-company").value, "Email: " + em.value,
         "WhatsApp: " + document.getElementById("f-wa").value, "Need: " + document.getElementById("f-need").value].join("\n");

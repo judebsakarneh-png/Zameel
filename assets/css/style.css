@@ -338,6 +338,9 @@ html[lang="ar"] form input,html[lang="ar"] form select{font-family:var(--ar)}
 form input::placeholder{color:#7C84B8}
 form input:focus-visible,form select:focus-visible{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(246,103,71,.3)}
 .err{font-size:13px;color:#FFA58F}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+form{position:relative}
+.form-foot .btn:disabled{opacity:.6;cursor:progress}
 .form-foot{grid-column:1/-1;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .form-foot small{color:var(--on-navy-2);font-size:13.5px}
 .done{grid-column:1/-1;padding:14px 16px;border-radius:12px;background:rgba(246,103,71,.16);color:#fff}
