@@ -98,6 +98,7 @@ function foot(lang) {
 ${links}
       <a href="${url(lang, "privacy")}">${esc(u.privacy)}</a>
       <a href="#" id="cookie-settings">${esc(u.cookies)}</a>
+      <a href="https://www.linkedin.com/company/zameelcx/" rel="noopener" target="_blank" translate="no">LinkedIn</a>
     </nav>
     <p class="foot-meta"><span>${esc(u.foot)}</span> <span>© <span id="yr">2026</span> Zameel</span></p>
   </div>
@@ -117,7 +118,7 @@ function servicePage(s, lang) {
     "@graph": [
       { "@type": "Service", "@id": SITE + url(lang, slug) + "#service", name: c.eyebrow, serviceType: c.eyebrow,
         description: c.desc, url: SITE + url(lang, slug), inLanguage: lang, availableLanguage: ["ar", "en"],
-        provider: { "@type": "Organization", "@id": SITE + "/#org", name: "Zameel", url: SITE + "/" } },
+        provider: { "@type": "Organization", "@id": SITE + "/#org", name: "Zameel", url: SITE + "/", sameAs: ["https://www.linkedin.com/company/zameelcx/"] } },
       { "@type": "BreadcrumbList", itemListElement: [
         { "@type": "ListItem", position: 1, name: u.home, item: SITE + h },
         { "@type": "ListItem", position: 2, name: c.nav, item: SITE + url(lang, slug) } ] },
