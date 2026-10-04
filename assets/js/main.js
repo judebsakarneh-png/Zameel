@@ -46,6 +46,7 @@
     var e = document.getElementById("e-email"); if (e && e.textContent) e.textContent = d.emailErr;
     drawScrub();
     if (typeof measureOrbit === "function") requestAnimationFrame(measureOrbit);
+    requestAnimationFrame(moveInk);
     try { localStorage.setItem("zameel-lang", l); } catch (_) {}
   }
   // On the live site the switch is a link between / and /ar/ (each page is fully translated in its HTML).
@@ -82,14 +83,69 @@
 
   /* ---------- Service tabs ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
-  function selectTab(i, focus) {
-    tabs.forEach(function (t, j) {
-      var on = i === j;
-      t.setAttribute("aria-selected", on ? "true" : "false");
-      t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+  var tabList = document.getElementById("tabs");
+  var panelBox = document.querySelector(".panels");
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var current = 0, swapTimer = null, ink = null;
+
+  // Sliding pill that follows the selected tab.
+  function moveInk() {
+    if (!ink) return;
+    var b = tabs[current];
+    ink.style.width = b.offsetWidth + "px";
+    ink.style.height = b.offsetHeight + "px";
+    ink.style.transform = "translate(" + b.offsetLeft + "px," + b.offsetTop + "px)";
+  }
+  if (tabList && tabs.length) {
+    ink = document.createElement("span");
+    ink.className = "tab-ink";
+    ink.setAttribute("aria-hidden", "true");
+    tabList.insertBefore(ink, tabList.firstChild);
+    tabList.classList.add("has-ink");
+    moveInk();
+    window.addEventListener("resize", moveInk);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveInk);
+  }
+
+  function settle() {
+    clearTimeout(swapTimer); swapTimer = null;
+    Array.prototype.forEach.call(panelBox.querySelectorAll(".panel"), function (p) {
+      p.classList.remove("leaving", "entering");
+      if (p.id !== tabs[current].getAttribute("aria-controls")) p.hidden = true;
     });
+    panelBox.classList.remove("sizing");
+    panelBox.style.height = "";
+  }
+
+  function selectTab(i, focus) {
     if (focus) tabs[i].focus();
+    if (i === current) return;
+    if (swapTimer) settle();
+    var from = document.getElementById(tabs[current].getAttribute("aria-controls"));
+    var to = document.getElementById(tabs[i].getAttribute("aria-controls"));
+    var forward = i > current;
+    current = i;
+    tabs.forEach(function (t, j) {
+      t.setAttribute("aria-selected", j === i ? "true" : "false");
+      t.tabIndex = j === i ? 0 : -1;
+    });
+    moveInk();
+
+    if (calm.matches) { from.hidden = true; to.hidden = false; return; }
+
+    // New content slides in from the side of the tab you moved towards (mirrored for Arabic).
+    var shift = (forward ? 1 : -1) * (root.dir === "rtl" ? -28 : 28);
+    panelBox.style.setProperty("--shift", shift + "px");
+    var h0 = panelBox.offsetHeight;
+    from.classList.add("leaving");
+    to.hidden = false;
+    to.classList.add("entering");
+    var h1 = panelBox.offsetHeight;
+    panelBox.style.height = h0 + "px";
+    void panelBox.offsetHeight;
+    panelBox.classList.add("sizing");
+    panelBox.style.height = h1 + "px";
+    swapTimer = setTimeout(settle, 900);
   }
   tabs.forEach(function (t, i) {
     t.addEventListener("click", function () { selectTab(i); });
