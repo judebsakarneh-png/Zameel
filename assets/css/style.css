@@ -425,3 +425,17 @@ html[lang="ar"] .page-h{letter-spacing:0;line-height:1.35}
 .consent-btns{display:flex;gap:10px}
 .consent .consent-no{background:transparent;color:#fff;border-color:var(--navy-3)}
 .consent .consent-no:hover{border-color:#fff}
+
+/* Depth on the navy shapes: lit circles with a soft drop shadow, and orange dots that sit on them */
+:root{
+  --orb:radial-gradient(circle at 30% 68%,#2034A6 0%,#18298F 34%,#12217B 66%,#0F1C70 100%);
+  --orb-shadow:-36px 48px 90px -28px rgba(2,6,35,.7),inset 14px -18px 48px rgba(255,255,255,.05),inset 0 0 0 1px rgba(255,255,255,.07),0 0 0 44px rgba(255,255,255,.018);
+  --dot:radial-gradient(circle at 34% 30%,#FF9A80 0%,#F66747 52%,#D24A2C 100%);
+  --dot-shadow:0 8px 18px -4px rgba(2,6,35,.7),0 0 0 6px rgba(246,103,71,.13)
+}
+.band::before{background:var(--orb);box-shadow:var(--orb-shadow)}
+.band::after{width:16px;height:16px;inset-inline-end:292px;top:56px;background:var(--dot);box-shadow:var(--dot-shadow)}
+.pattern .quarter{background:var(--orb);box-shadow:var(--orb-shadow)}
+.pattern .pdot,.panels::after,.inc::after,.calc-out::after{background:var(--dot);box-shadow:var(--dot-shadow)}
+@media (max-width:600px){.band::before{width:400px;height:400px;inset-inline-end:-170px;top:-170px}.band::after{inset-inline-end:200px;top:44px}}
+[dir="rtl"] .band::before{background:radial-gradient(circle at 70% 68%,#2034A6 0%,#18298F 34%,#12217B 66%,#0F1C70 100%)}
