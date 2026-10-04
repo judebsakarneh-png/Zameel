@@ -134,7 +134,7 @@
     if (calm.matches) { from.hidden = true; to.hidden = false; return; }
 
     // New content slides in from the side of the tab you moved towards (mirrored for Arabic).
-    var shift = (forward ? 1 : -1) * (root.dir === "rtl" ? -28 : 28);
+    var shift = (forward ? 1 : -1) * (root.dir === "rtl" ? -20 : 20);
     panelBox.style.setProperty("--shift", shift + "px");
     var h0 = panelBox.offsetHeight;
     from.classList.add("leaving");
@@ -145,7 +145,7 @@
     void panelBox.offsetHeight;
     panelBox.classList.add("sizing");
     panelBox.style.height = h1 + "px";
-    swapTimer = setTimeout(settle, 900);
+    swapTimer = setTimeout(settle, 1500);
   }
   tabs.forEach(function (t, i) {
     t.addEventListener("click", function () { selectTab(i); });
