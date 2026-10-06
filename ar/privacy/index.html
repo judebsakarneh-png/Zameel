@@ -14,23 +14,49 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zameel">
 <meta property="og:locale" content="ar_AR">
+<meta property="og:locale:alternate" content="en_US">
 <meta property="og:url" content="https://zameel.cx/ar/privacy/">
 <meta property="og:title" content="سياسة الخصوصية | زميل">
 <meta property="og:description" content="كيف يجمع زميل البيانات الشخصية على zameel.cx ويستخدمها، بما في ذلك نموذج التواصل وتحليلات الموقع.">
 <meta property="og:image" content="https://zameel.cx/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="شعار زميل مع عبارة: عملياتكم. فريقنا. معيار واحد.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="سياسة الخصوصية | زميل">
+<meta name="twitter:description" content="كيف يجمع زميل البيانات الشخصية على zameel.cx ويستخدمها، بما في ذلك نموذج التواصل وتحليلات الموقع.">
+<meta name="twitter:image" content="https://zameel.cx/assets/og-image.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "سياسة الخصوصية",
-  "url": "https://zameel.cx/ar/privacy/",
-  "inLanguage": "ar",
-  "isPartOf": {
-    "@id": "https://zameel.cx/#website"
-  }
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "سياسة الخصوصية",
+      "url": "https://zameel.cx/ar/privacy/",
+      "inLanguage": "ar",
+      "isPartOf": {
+        "@id": "https://zameel.cx/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://zameel.cx/ar/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "سياسة الخصوصية",
+          "item": "https://zameel.cx/ar/privacy/"
+        }
+      ]
+    }
+  ]
 }
 </script>
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
@@ -39,84 +65,95 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-tick" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  </defs>
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-replay" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 1 0 1.7-4M2.5 2.5V5H5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/ar/" aria-label="Zameel, home"><img src="/assets/brand/zameel-logo-full-colour.svg" alt="Zameel زميل" width="136" height="44"></a>
-    <nav class="nav-links" aria-label="Main">
-      <a href="/ar/#services">الخدمات</a>
-      <a href="/ar/#standards">المعايير</a>
+    <a class="brand" href="/ar/" aria-label="زميل، الصفحة الرئيسية"><img src="/assets/brand/zameel-logo-full-colour.svg" alt="Zameel زميل" width="118" height="38"></a>
+    <nav class="nav-links" aria-label="الرئيسية">
+      <a href="/ar/#channels">الخدمات</a>
+      <a href="/ar/#trained">الجودة</a>
+      <a href="/ar/dashboard/">لوحة المتابعة</a>
+      <a href="/ar/#savings">التكلفة</a>
       <a href="/ar/#record">سجلّنا</a>
       <a href="/ar/#faq">أسئلة شائعة</a>
     </nav>
-    <div class="nav-end">
-      <a class="lang" href="/privacy/" hreflang="en" lang="en">English</a>
-      <a class="btn btn-orange btn-sm" href="/ar/#contact">اطلب مكالمة</a>
-    </div>
+    <a class="lang" href="/privacy/" hreflang="en" lang="en" aria-label="Read this site in English">English</a>
+    <a class="btn btn-navy btn-sm" href="/ar/#contact">احجزوا مكالمة</a>
   </div>
+  <span class="progress" aria-hidden="true"></span>
 </header>
 
 <main id="main">
-  <section class="page-hero">
-    <div class="wrap page-hero-in">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="/ar/">الرئيسية</a> <span aria-hidden="true">/</span> <span>سياسة الخصوصية</span></nav>
-      <h1 class="page-h">سياسة الخصوصية</h1>
-      <p class="hero-sub">آخر تحديث: 1 أكتوبر 2026</p>
+  <section class="phero short">
+    <div class="wrap phero-copy">
+      <nav class="crumbs" aria-label="مسار التنقل"><a href="/ar/">الرئيسية</a><span aria-hidden="true">/</span><span>سياسة الخصوصية</span></nav>
+      <h1 class="h1 ph1">سياسة الخصوصية</h1>
+      <p class="lede">آخر تحديث: 1 أكتوبر 2026</p>
     </div>
   </section>
-  <section class="wrap legal">
-    <h2>من نحن</h2>
-    <p>توضح هذه السياسة كيف يتعامل زميل ("نحن") مع البيانات الشخصية التي تُجمع عبر zameel.cx. لأي سؤال أو طلب يخص الخصوصية، راسلونا على <a href="mailto:info@zameel.cx" dir="ltr">info@zameel.cx</a>.</p>
-    <h2>ما الذي نجمعه</h2>
-    <p>عند استخدام نموذج التواصل نجمع الاسم والشركة والبريد الإلكتروني للعمل ورقم واتساب (إن أُدخل) والخدمة التي تهمكم. وعند تصفح الموقع، تجمع Google Analytics بيانات استخدام مثل الصفحات التي تمت زيارتها ونوع الجهاز والموقع التقريبي ومصدر الزيارة، باستخدام ملفات تعريف الارتباط.</p>
-    <h2>لماذا نستخدمها</h2>
-    <p>نستخدم بيانات نموذج التواصل فقط للرد على استفساركم وترتيب مكالمة، وإدارة العلاقة إن عملنا معًا. ونستخدم بيانات التحليلات لمعرفة الصفحات المفيدة وتحسين الموقع. لا نبيع بياناتكم ولا نستخدمها لبناء ملفات إعلانية.</p>
-    <h2>مع من نشاركها</h2>
-    <p>نستعين بعدد محدود من مزودي الخدمات لتشغيل الموقع: Vercel (الاستضافة)، وResend (إرسال رسائل النموذج)، وGoogle Workspace (بريدنا)، وGoogle Analytics (إحصاءات الموقع). يعالجون البيانات نيابة عنا ولهذه الأغراض فقط.</p>
-    <h2>مدة الاحتفاظ</h2>
-    <p>تُحذف الاستفسارات التي لا تؤدي إلى تعاون خلال 24 شهرًا. وتُحفظ بيانات التحليلات لمدة أقصاها 14 شهرًا.</p>
-    <h2>خياراتكم وحقوقكم</h2>
-    <p>يمكنكم طلب الاطلاع على بياناتكم الشخصية لدينا أو تصحيحها أو حذفها، أو التوقف عن التواصل معكم، بمراسلة info@zameel.cx. إذا كان جهازكم مضبوطًا على منطقة زمنية أوروبية، فلا تُستخدم ملفات تعريف الارتباط الخاصة بالتحليلات إلا بعد الضغط على "موافق" في شريط ملفات تعريف الارتباط، وفي غير ذلك تكون التحليلات مفعّلة افتراضيًا. وفي الحالتين يمكنكم تغيير اختياركم في أي وقت من رابط "إعدادات ملفات تعريف الارتباط" أسفل كل صفحة.</p>
-    <h2>بيانات العملاء</h2>
-    <p>البيانات التي نعالجها لعملائنا أثناء تقديم خدماتنا تخضع لاتفاقية معالجة بيانات منفصلة تُوقّع مع كل عميل، وليس لهذه السياسة.</p>
-    <h2>التغييرات</h2>
-    <p>إذا غيّرنا هذه السياسة سنحدّث التاريخ في أعلى هذه الصفحة.</p>
+  <section class="scene legal-wrap">
+    <div class="wrap legal">
+      <h2>من نحن</h2>
+      <p>توضح هذه السياسة كيف يتعامل زميل ("نحن") مع البيانات الشخصية التي تُجمع عبر zameel.cx. لأي سؤال أو طلب يخص الخصوصية، راسلونا على <a href="mailto:info@zameel.cx" dir="ltr">info@zameel.cx</a>.</p>
+      <h2>ما الذي نجمعه</h2>
+      <p>عند استخدام نموذج التواصل نجمع الاسم والشركة والبريد الإلكتروني للعمل ورقم واتساب (إن أُدخل) والخدمة التي تهمكم. وعند تصفح الموقع، تجمع Google Analytics بيانات استخدام مثل الصفحات التي تمت زيارتها ونوع الجهاز والموقع التقريبي ومصدر الزيارة، باستخدام ملفات تعريف الارتباط.</p>
+      <h2>لماذا نستخدمها</h2>
+      <p>نستخدم بيانات نموذج التواصل فقط للرد على استفساركم وترتيب مكالمة، وإدارة العلاقة إن عملنا معًا. ونستخدم بيانات التحليلات لمعرفة الصفحات المفيدة وتحسين الموقع. لا نبيع بياناتكم ولا نستخدمها لبناء ملفات إعلانية.</p>
+      <h2>مع من نشاركها</h2>
+      <p>نستعين بعدد محدود من مزودي الخدمات لتشغيل الموقع: Vercel (الاستضافة)، وResend (إرسال رسائل النموذج)، وGoogle Workspace (بريدنا)، وGoogle Analytics (إحصاءات الموقع). يعالجون البيانات نيابة عنا ولهذه الأغراض فقط.</p>
+      <h2>مدة الاحتفاظ</h2>
+      <p>تُحذف الاستفسارات التي لا تؤدي إلى تعاون خلال 24 شهرًا. وتُحفظ بيانات التحليلات لمدة أقصاها 14 شهرًا.</p>
+      <h2>خياراتكم وحقوقكم</h2>
+      <p>يمكنكم طلب الاطلاع على بياناتكم الشخصية لدينا أو تصحيحها أو حذفها، أو التوقف عن التواصل معكم، بمراسلة info@zameel.cx. إذا كان جهازكم مضبوطًا على منطقة زمنية أوروبية، فلا تُستخدم ملفات تعريف الارتباط الخاصة بالتحليلات إلا بعد الضغط على "موافق" في شريط ملفات تعريف الارتباط، وفي غير ذلك تكون التحليلات مفعّلة افتراضيًا. وفي الحالتين يمكنكم تغيير اختياركم في أي وقت من رابط "إعدادات ملفات تعريف الارتباط" أسفل كل صفحة.</p>
+      <h2>بيانات العملاء</h2>
+      <p>البيانات التي نعالجها لعملائنا أثناء تقديم خدماتنا تخضع لاتفاقية معالجة بيانات منفصلة تُوقّع مع كل عميل، وليس لهذه السياسة.</p>
+      <h2>التغييرات</h2>
+      <p>إذا غيّرنا هذه السياسة سنحدّث التاريخ في أعلى هذه الصفحة.</p>
+    </div>
   </section>
 </main>
 
 <footer class="foot">
-  <img class="foot-mark" src="/assets/brand/zameel-mark-white.svg" alt="" aria-hidden="true">
+  <canvas class="foot-dots" id="foot-dots" aria-hidden="true" data-mark="/assets/brand/zameel-mark.svg"></canvas>
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      <img src="/assets/brand/zameel-logo-white.svg" alt="Zameel زميل" width="160" height="52">
-      <p class="foot-tag">عملياتكم. فريقنا. معيار واحد.</p>
+      <img src="/assets/brand/zameel-logo-white.svg" alt="Zameel زميل" width="142" height="46">
+      <p>عملياتكم. فريقنا. معيار واحد.</p>
       <a class="foot-mail" href="mailto:info@zameel.cx" dir="ltr">info@zameel.cx</a>
     </div>
-    <nav class="foot-links" aria-label="Footer">
-      <a href="/ar/services/customer-support-outsourcing/">تعهيد خدمة العملاء</a>
-      <a href="/ar/services/whatsapp-support/">دعم واتساب</a>
-      <a href="/ar/services/back-office-kyc/">الأعمال المكتبية والتحقق</a>
-      <a href="/ar/services/peak-season-support/">تغطية المواسم</a>
-      <a href="/ar/privacy/">الخصوصية</a>
-      <a href="#" id="cookie-settings">إعدادات ملفات تعريف الارتباط</a>
-      <a href="https://www.linkedin.com/company/zameelcx/" rel="noopener" target="_blank" translate="no">LinkedIn</a>
+    <nav class="foot-links" aria-label="روابط التذييل">
+      <div><h4>الخدمات</h4>
+        <a href="/ar/services/customer-support-outsourcing/">تعهيد خدمة العملاء</a>
+        <a href="/ar/services/whatsapp-support/">دعم واتساب</a>
+        <a href="/ar/services/back-office-kyc/">الأعمال المكتبية والتحقق</a>
+        <a href="/ar/services/peak-season-support/">تغطية المواسم</a>
+      </div>
+      <div><h4>زميل</h4>
+        <a href="/ar/dashboard/">لوحة المتابعة</a>
+        <a href="/ar/#trained">الجودة</a>
+        <a href="/ar/#record">سجلّنا</a>
+        <a href="/ar/#contact">تواصلوا معنا</a>
+      </div>
+      <div><h4>المزيد</h4>
+        <a href="/ar/privacy/">الخصوصية</a>
+        <a href="#" id="cookie-settings">إعدادات ملفات تعريف الارتباط</a>
+        <a href="https://www.linkedin.com/company/zameelcx/" rel="noopener" target="_blank" translate="no">LinkedIn</a>
+        <a href="/" hreflang="en" lang="en">English</a>
+      </div>
     </nav>
-    <p class="foot-meta"><span>عمليات خدمة العملاء بالعربية والإنجليزية.</span> <span>© <span id="yr">2026</span> Zameel</span></p>
+    <p class="foot-meta"><span>عمليات خدمة العملاء بالعربية والإنجليزية.</span><span>© <span id="yr">2026</span> زميل</span></p>
   </div>
 </footer>
-
 <script src="/assets/js/consent.js"></script>
-<script src="/assets/js/page.js"></script>
+<script src="/assets/js/common.js"></script>
 </body>
 </html>

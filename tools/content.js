@@ -1,5 +1,5 @@
 // Copy for the service and privacy pages, English and Arabic.
-// Edit here, then run:  node tools/build-pages.js
+// Edit here, then run:  node tools/build.js
 // Site rules: no country names, no client results or certifications we don't hold,
 // no pricing, "account manager" (never "team lead").
 
@@ -42,7 +42,7 @@ const SERVICES = [
       faq: [
         ["What does a customer support outsourcing team handle?", "Order tracking, refunds, complaints, pre-sale questions, account issues and anything else in your support queue. We follow your policies and escalate what needs your team."],
         ["Will customers know they are talking to an outsourced team?", "Not unless you want them to. Agents use your brand name, your tone and your saved replies, inside your own tools."],
-        ["What is the smallest team we can start with?", "Three seats for three months. Most clients start with a pilot on one channel and add seats once the weekly numbers work for them."],
+        ["What is the smallest team we can start with?", "Three seats for three months. You can start with a pilot on one channel and add seats once the weekly numbers work for you."],
         ["How do we keep control of quality?", "Every agent is scored against a quality scorecard, and you get a weekly report on volumes, response times and recurring issues. Your account manager joins a weekly review with you."],
       ],
     },
@@ -71,7 +71,7 @@ const SERVICES = [
       faq: [
         ["ما الذي يتولاه فريق خدمة العملاء الخارجي؟", "تتبع الطلبات والاسترجاع والشكاوى وأسئلة ما قبل الشراء ومشكلات الحسابات وكل ما يصل إلى طابور الدعم. نتبع سياساتكم ونصعّد ما يحتاج إلى فريقكم."],
         ["هل سيعرف العملاء أنهم يتحدثون مع فريق خارجي؟", "لا، إلا إذا أردتم ذلك. يعمل الفريق باسم علامتكم وبأسلوبكم وردودكم الجاهزة، داخل أدواتكم."],
-        ["ما أصغر فريق يمكن أن نبدأ به؟", "ثلاثة مقاعد لمدة ثلاثة أشهر. يبدأ معظم العملاء بتجربة على قناة واحدة، ثم يضيفون مقاعد عندما تناسبهم الأرقام الأسبوعية."],
+        ["ما أصغر فريق يمكن أن نبدأ به؟", "ثلاثة مقاعد لمدة ثلاثة أشهر. يمكنكم البدء بتجربة على قناة واحدة، ثم إضافة مقاعد عندما تناسبكم الأرقام الأسبوعية."],
         ["كيف نحافظ على الجودة؟", "يُقيَّم كل موظف ببطاقة جودة، وتصلكم تقارير أسبوعية عن حجم الطلبات وأوقات الرد والمشكلات المتكررة. ويحضر مدير حسابكم مراجعة أسبوعية معكم."],
       ],
     },
@@ -139,7 +139,7 @@ const SERVICES = [
     slug: "back-office-kyc",
     en: {
       title: "Back-Office, KYC & Claims Outsourcing in Arabic & English | Zameel",
-      desc: "Checklist-driven back-office work for regulated teams: KYC checks, claims, policy admin and merchant onboarding, done in your systems by a dedicated Zameel team.",
+      desc: "Back-office work for regulated teams: KYC checks, claims, policy admin and merchant onboarding, done in your systems by a dedicated Zameel team.",
       nav: "Back-office and KYC",
       eyebrow: "Back-office and underwriting",
       h1: "Back-office, KYC and claims work, done to your checklist.",

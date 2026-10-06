@@ -1,32 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Page not found | Zameel</title>
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#0E1D70">
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&family=Tajawal:wght@500;800&display=swap">
-<style>
-:root{--navy:#0E1D70;--orange:#F66747;--white:#FDFBFC}
-body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--navy);color:#fff;font-family:"Inter",system-ui,sans-serif;text-align:center;padding:24px}
-main{display:flex;flex-direction:column;align-items:center;gap:18px}
-img{width:180px;height:auto}
-h1{margin:12px 0 0;font-size:34px;font-weight:800}
-p{margin:0;color:#AEB5DD}
-p[lang=ar]{font-family:"Tajawal",sans-serif;font-size:18px}
-a{display:inline-flex;margin-top:10px;padding:14px 22px;border-radius:12px;background:var(--orange);color:var(--navy);font-weight:600;text-decoration:none}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,800;1,700&family=Tajawal:wght@500;800&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
-<main>
-  <img src="/assets/brand/zameel-logo-white.svg" alt="Zameel زميل" width="180" height="58">
-  <h1>This page doesn't exist.</h1>
-  <p>The link may be old or mistyped.</p>
-  <p lang="ar" dir="rtl">هذه الصفحة غير موجودة.</p>
-  <a href="/">Back to zameel.cx</a>
+<body class="nf">
+<main class="nf-in">
+  <div class="nf-agent" aria-hidden="true"><canvas class="char" data-agent="0.8" data-mode="light"></canvas></div>
+  <div class="nf-copy">
+    <img src="/assets/brand/zameel-logo-white.svg" alt="Zameel زميل" width="160" height="52">
+    <h1 class="h2">This page <em>doesn't exist.</em></h1>
+    <p class="lede">The link may be old or mistyped.</p>
+    <p class="lede" lang="ar" dir="rtl">هذه الصفحة غير موجودة. ربما الرابط قديم أو فيه خطأ.</p>
+    <div class="ctas"><a class="btn btn-white" href="/">Back to zameel.cx <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="/ar/" lang="ar">العودة إلى الرئيسية</a></div>
+  </div>
 </main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+<script src="/assets/js/character.js" data-mark="/assets/brand/zameel-mark.svg"></script>
+<script src="/assets/js/common.js"></script>
 </body>
 </html>
