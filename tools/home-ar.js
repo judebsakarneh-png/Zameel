@@ -287,4 +287,16 @@ module.exports = [
   ['<label for="f-website">Website</label>', '<label for="f-website">الموقع</label>'],
   ['>Request my call <svg', '>اطلبوا مكالمتكم <svg'],
   ['<small>We reply within one working day.</small>', '<small>نرد خلال يوم عمل واحد.</small>'],
+  // film
+  ['Watch the film <small>0:22</small>', 'شاهدوا الفيلم <small>0:22</small>'],
+  ['Zameel in <em>22 seconds.</em>', 'زميل في <em>22 ثانية.</em>'],
+  ['How a team that works your hours, in your tools and in both languages fits into your day.', 'كيف يندمج في يومكم فريق يعمل في ساعاتكم، داخل أدواتكم، وباللغتين.'],
+  ['aria-label="22 second film about how Zameel works"', 'aria-label="فيلم من 22 ثانية عن طريقة عمل زميل"'],
+  ['>Your customers don’t keep office hours.<', '>عملاؤكم لا يلتزمون بساعات الدوام.<'],
+  ['>Shifts planned around when your customers write and call.<', '>ورديات مخططة حسب الأوقات التي يتواصل فيها عملاؤكم.<'],
+  ['>WhatsApp, email and calls, in one thread with one team.<', '>واتساب وبريد ومكالمات، في محادثة واحدة مع فريق واحد.<'],
+  ['>Trained on your product, your tools and your tone.<', '>مدرَّبون على منتجكم وأدواتكم وأسلوبكم.<'],
+  ['>A weekly report from one named account manager.<', '>تقرير أسبوعي من مدير حساب واحد تعرفونه بالاسم.<'],
+  ['aria-label="Zameel film"', 'aria-label="فيلم زميل"'],
+  ['<button class="lb-x" type="button" aria-label="Close">', '<button class="lb-x" type="button" aria-label="إغلاق">'],
 ];

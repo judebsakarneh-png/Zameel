@@ -537,3 +537,35 @@
     kick();
   });
 })();
+
+/* film: silent loop when on screen, full-screen pop-up from the hero button, phone captions */
+(function () {
+  var v = document.getElementById("film-v"), lb = document.getElementById("lb");
+  if (!v || !lb) return;
+  var lv = lb.querySelector("video"), btn = document.querySelector("[data-watch]");
+  var caps = [].map.call(document.querySelectorAll("#film-caps li"), function (li) { return [+li.dataset.a, +li.dataset.b, li.textContent]; });
+  function cap(vid, el) {
+    vid.addEventListener("timeupdate", function () {
+      var t = vid.currentTime, s = "";
+      caps.forEach(function (c) { if (t >= c[0] && t < c[1]) s = c[2]; });
+      if (el.textContent !== s) el.textContent = s;
+    });
+  }
+  cap(v, document.getElementById("film-cap")); cap(lv, lb.querySelector(".lb-cap"));
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting) v.play().catch(function () {}); else v.pause(); }, { threshold: .35 }).observe(v);
+  }
+  v.addEventListener("click", function () { v.paused ? v.play().catch(function () {}) : v.pause(); });
+  function close() { lb.classList.remove("open"); lv.pause(); setTimeout(function () { lb.hidden = true; }, 300); if (btn) btn.focus(); }
+  if (btn) btn.addEventListener("click", function () {
+    v.pause(); lb.hidden = false; lv.currentTime = 0;
+    requestAnimationFrame(function () { lb.classList.add("open"); });
+    lv.play().catch(function () {}); lb.querySelector(".lb-x").focus();
+    if (window.gtag) gtag("event", "film_play");
+  });
+  lb.querySelector(".lb-x").addEventListener("click", close);
+  lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+  lv.addEventListener("ended", close);
+  addEventListener("keydown", function (e) { if (e.key === "Escape" && !lb.hidden) close(); });
+})();

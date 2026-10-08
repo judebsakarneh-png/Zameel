@@ -7,6 +7,7 @@
         <div class="ctas">
           <a class="btn btn-navy" href="#contact">Book a discovery call <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="btn btn-ghost" href="#channels">See what we run <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <button class="btn btn-watch" type="button" data-watch aria-controls="lb"><span class="pl" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span>Watch the film <small>0:22</small></button>
         </div>
         <ul class="facts">
           <li><b>AR + EN</b><span>Both languages on every shift</span></li>
@@ -19,6 +20,30 @@
         <div class="bubble c" style="transition-delay:.7s">Customers waiting on a reply?<small>10:02</small></div>
         <div class="bubble a" style="transition-delay:1.1s">Not anymore. Answered in Arabic and English, in your hours.<small>10:02 ✓✓</small></div>
       </div>
+    </div>
+  </section>
+  <section class="film" id="film" aria-labelledby="film-h">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 class="h2" id="film-h">Zameel in <em>22 seconds.</em></h2>
+        <p class="lede">How a team that works your hours, in your tools and in both languages fits into your day.</p>
+      </div>
+      <div class="film-frame">
+        <video id="film-v" src="/assets/video/zameel-film.mp4" poster="/assets/video/zameel-film-poster.jpg" muted playsinline loop preload="metadata" aria-label="22 second film about how Zameel works"></video>
+      </div>
+      <p class="film-cap" id="film-cap" aria-hidden="true"></p>
+      <ol class="film-caps" id="film-caps" hidden>
+        <li data-a="0.25" data-b="1.95">Your customers don’t keep office hours.</li>
+        <li data-a="2.15" data-b="4.95">Shifts planned around when your customers write and call.</li>
+        <li data-a="5.15" data-b="8.9">WhatsApp, email and calls, in one thread with one team.</li>
+        <li data-a="9.15" data-b="12.9">Trained on your product, your tools and your tone.</li>
+        <li data-a="13.15" data-b="15.9">A weekly report from one named account manager.</li>
+      </ol>
+    </div>
+    <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Zameel film" hidden>
+      <button class="lb-x" type="button" aria-label="Close">×</button>
+      <video src="/assets/video/zameel-film.mp4" poster="/assets/video/zameel-film-poster.jpg" muted playsinline controls preload="none"></video>
+      <p class="lb-cap" aria-hidden="true"></p>
     </div>
   </section>
   <section class="scene navy" id="channels" data-scene aria-labelledby="ch-h">
