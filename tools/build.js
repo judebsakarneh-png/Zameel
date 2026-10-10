@@ -152,9 +152,9 @@ function homeLd(lang, body) {
   return { "@context": "https://schema.org", "@graph": [ORG,
     { "@type": "ProfessionalService", "@id": SITE + "/#service", name: "Zameel", url: SITE + "/", image: SITE + "/assets/og-image.png",
       parentOrganization: { "@id": SITE + "/#org" },
-      description: lang === "ar" ? "تعهيد دعم العملاء والأعمال المكتبية والاكتتاب بالعربية والإنجليزية." : "Arabic and English customer support, back-office and underwriting outsourcing.",
+      description: lang === "ar" ? "تعهيد دعم العملاء والأعمال المكتبية بالعربية والإنجليزية." : "Arabic and English customer support and back-office outsourcing.",
       knowsLanguage: ["ar", "en"],
-      knowsAbout: ["Customer support outsourcing", "WhatsApp customer support", "Back-office and KYC outsourcing", "Peak-season customer support"] },
+      knowsAbout: ["Customer support outsourcing", "WhatsApp customer support", "Back-office outsourcing", "Peak-season customer support"] },
     { "@type": "WebSite", "@id": SITE + "/#website", url: SITE + "/", name: "Zameel", alternateName: ["زميل", "Zameel CX"], inLanguage: ["en", "ar"], publisher: { "@id": SITE + "/#org" } },
     { "@type": "WebPage", "@id": SITE + url(lang, "") + "#webpage", url: SITE + url(lang, ""), name: HOME_META[lang].title, description: HOME_META[lang].desc,
       inLanguage: lang, isPartOf: { "@id": SITE + "/#website" }, about: { "@id": SITE + "/#org" } },
@@ -166,9 +166,9 @@ function homeLd(lang, body) {
 }
 const HOME_META = {
   en: { title: "Zameel CX | Arabic & English Customer Support and Back-Office", og: "Zameel | Your operations. Our people. One standard.",
-    desc: "Zameel runs Arabic and English customer support, back-office and underwriting. Your hours, your tools, a report every week." },
+    desc: "Zameel runs Arabic and English customer support and back-office work. Your hours, your tools, a report every week." },
   ar: { title: "زميل Zameel | دعم العملاء والأعمال المكتبية بالعربية والإنجليزية", og: "زميل | عملياتكم. فريقنا. معيار واحد.",
-    desc: "زميل يدير دعم العملاء والأعمال المكتبية والاكتتاب بالعربية والإنجليزية. في ساعات عملكم، وداخل أدواتكم، مع تقرير أسبوعي." },
+    desc: "زميل يدير دعم العملاء والأعمال المكتبية بالعربية والإنجليزية. في ساعات عملكم، وداخل أدواتكم، مع تقرير أسبوعي." },
 };
 
 function applyPairs(html, pairs, label) {
@@ -194,7 +194,7 @@ function homePage(lang) {
 }
 
 /* ---------- service + privacy pages ---------- */
-const AGENT_LOOK = { "customer-support-outsourcing": -0.5, "whatsapp-support": 0.6, "back-office-kyc": -0.2, "peak-season-support": 0.4 };
+const AGENT_LOOK = { "customer-support-outsourcing": -0.5, "whatsapp-support": 0.6, "back-office": -0.2, "peak-season-support": 0.4 };
 function crumbs(lang, label) {
   const u = UI[lang];
   return `<nav class="crumbs" aria-label="${lang === "ar" ? "مسار التنقل" : "Breadcrumb"}"><a href="${pre(lang)}">${esc(u.home)}</a><span aria-hidden="true">/</span><span>${esc(label)}</span></nav>`;

@@ -51,26 +51,26 @@ module.exports = {
       ],
     },
   },
-  "back-office-kyc": {
+  "back-office": {
     en: {
       moreH: "Who back-office outsourcing is for",
       more: [
-        "Fintech and payment companies onboarding merchants and customers, insurers and brokers handling claims and renewals, lenders checking documents, and marketplaces verifying sellers. The common thread is work that must be done the same way every time, with a record of who did what.",
+        "Online stores processing orders, returns and refunds, marketplaces onboarding new sellers, and growing companies whose admin work has outgrown the team. The common thread is work that must be done the same way every time, with a record of who did what.",
         "We start by running a sample of your real cases side by side with your team, so you can compare the results before we take a full queue. Every case follows your checklist, anything unclear is flagged rather than guessed, and the weekly report shows cases processed, turnaround time, error rate from your own checks and the reasons cases were sent back.",
       ],
       faq: [
-        ["Which documents can your team review?", "Arabic and English identity documents, trade licences, bank statements, invoices, policy schedules and claim forms, checked against the rules you set. Final approval stays with your team wherever your regulator requires it."],
+        ["What kind of tasks can you take on?", "Repeatable work with clear rules: processing orders and refunds, updating product and customer records, filing invoices and documents, and setting up new sellers or partners. Decisions that need your judgement stay with your team."],
         ["How do you measure accuracy?", "Each case is checked against your checklist, and a share of every agent's work is reviewed again by the account manager. Errors are logged by type so the cause is fixed, not just the case."],
       ],
     },
     ar: {
       moreH: "لمن تعهيد الأعمال المكتبية",
       more: [
-        "شركات التقنية المالية والمدفوعات التي تسجّل التجار والعملاء، وشركات التأمين والوساطة التي تعالج المطالبات والتجديدات، وجهات التمويل التي تراجع المستندات، والأسواق الإلكترونية التي تتحقق من البائعين. ما يجمعها عمل يجب أن يُنجز بالطريقة نفسها في كل مرة، مع سجل يوضح من فعل ماذا.",
+        "المتاجر الإلكترونية التي تعالج الطلبات والإرجاع والاسترداد، والأسواق الإلكترونية التي تسجّل بائعين جددًا، والشركات النامية التي كبرت أعمالها الإدارية على فريقها. ما يجمعها عمل يجب أن يُنجز بالطريقة نفسها في كل مرة، مع سجل يوضح من فعل ماذا.",
         "نبدأ بتنفيذ عينة من حالاتكم الحقيقية بالتوازي مع فريقكم، لتقارنوا النتائج قبل أن نستلم طابورًا كاملًا. تتبع كل حالة قائمة التحقق لديكم، ويُرفع كل ما هو غير واضح بدل التخمين، ويعرض التقرير الأسبوعي عدد الحالات وزمن الإنجاز ونسبة الأخطاء في مراجعاتكم وأسباب إعادة الحالات.",
       ],
       faq: [
-        ["ما المستندات التي يراجعها فريقكم؟", "مستندات الهوية بالعربية والإنجليزية والسجلات التجارية وكشوف الحسابات والفواتير وجداول الوثائق ونماذج المطالبات، وفق القواعد التي تحددونها. وتبقى الموافقة النهائية لدى فريقكم حيثما تشترط الجهة الرقابية ذلك."],
+        ["ما نوع المهام التي تتولونها؟", "العمل المتكرر ذو القواعد الواضحة: معالجة الطلبات والاسترداد، وتحديث بيانات المنتجات والعملاء، وحفظ الفواتير والمستندات، وتسجيل البائعين والشركاء الجدد. أما القرارات التي تحتاج إلى تقديركم فتبقى لدى فريقكم."],
         ["كيف تقيسون الدقة؟", "تُراجع كل حالة مقابل قائمة التحقق لديكم، ويعيد مدير الحساب مراجعة نسبة من عمل كل موظف. وتُسجَّل الأخطاء حسب نوعها لمعالجة السبب، لا الحالة وحدها."],
       ],
     },

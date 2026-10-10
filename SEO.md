@@ -22,7 +22,7 @@
 
 ## What can rank first
 - Brand: "Zameel", "Zameel CX", "زميل خدمة العملاء" within weeks of indexing.
-- Narrow phrases where competition is low: Arabic customer support outsourcing, WhatsApp customer support outsourcing, bilingual Arabic English support agents, Ramadan customer support cover, KYC back-office outsourcing, تعهيد خدمة العملاء, دعم عملاء واتساب.
+- Narrow phrases where competition is low: Arabic customer support outsourcing, WhatsApp customer support outsourcing, bilingual Arabic English support agents, Ramadan customer support cover, e-commerce back-office outsourcing, تعهيد خدمة العملاء, دعم عملاء واتساب.
 - Broad phrases like "customer support outsourcing" are dominated by large BPOs with years of links; those take months of the steps above, and no site change can guarantee a position.
 
 Full competitor research, keyword priorities and Search Console steps: /mnt/project-files/seo/zameel-seo-report.pdf
