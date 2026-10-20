@@ -53,3 +53,18 @@ Same Vercel project and environment variables as v1 (see the v1 README for Resen
 ## Rules for the copy
 
 No client results, client counts or certifications Zameel does not hold. No pricing. No country names (Gulf as a region is fine). "Account manager", never "team lead". Plain "Arabic and English", no dialect claims. The track-record figures are the leadership's own scorecards, never Zameel client results. The dashboard page is labelled as an example account with made-up numbers.
+
+## Founders console (/admin/)
+
+A private, founders-only dashboard at `zameel.cx/admin/`: clients and seats, contracts, invoices, agents and hiring, service levels, pipeline, costs and company setup. It is hand-written and not touched by `tools/build.js`.
+
+```
+admin/index.html            the console page (noindex, also sent with an X-Robots-Tag header)
+assets/css/admin.css        console styles, light and dark
+assets/js/admin.js          the console: sign-in, pages, edit drawer, charts
+api/admin-config.js         serves the Supabase URL and key from Vercel settings; unset means preview mode
+assets/js/admin-demo.js     made-up rows used only in preview mode
+supabase/admin-schema.sql   tables and founder-only row security (not served)
+```
+
+Data lives in Supabase. No key is stored in this repo: the Supabase URL and publishable key are set in Vercel as `ADMIN_SUPABASE_URL` and `ADMIN_SUPABASE_ANON_KEY` and served by `api/admin-config.js`. Every table only answers signed-in accounts whose email is in `public.founders`. Public sign-ups are turned off in Supabase (Authentication, Sign In / Providers, Allow new users to sign up: off), so founder accounts are only created by hand (Authentication, Add user) with a password. With the variables unset the page runs as a preview on made-up data and saves nothing.
