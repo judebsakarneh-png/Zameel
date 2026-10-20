@@ -62,9 +62,9 @@ A private, founders-only dashboard at `zameel.cx/admin/`: clients and seats, con
 admin/index.html            the console page (noindex, also sent with an X-Robots-Tag header)
 assets/css/admin.css        console styles, light and dark
 assets/js/admin.js          the console: sign-in, pages, edit drawer, charts
-assets/js/admin-config.js   Supabase URL and anon key; empty means preview mode
+api/admin-config.js         serves the Supabase URL and key from Vercel settings; unset means preview mode
 assets/js/admin-demo.js     made-up rows used only in preview mode
 supabase/admin-schema.sql   tables and founder-only row security (not served)
 ```
 
-Data lives in Supabase. The anon key in `admin-config.js` is public by design; every table only answers signed-in accounts whose email is in `public.founders`. Founder accounts are created in Supabase (Authentication, Add user) with a password. With the config left empty the page runs as a preview on made-up data and saves nothing.
+Data lives in Supabase. No key is stored in this repo: the Supabase URL and publishable key are set in Vercel as `ADMIN_SUPABASE_URL` and `ADMIN_SUPABASE_ANON_KEY` and served by `api/admin-config.js`. Every table only answers signed-in accounts whose email is in `public.founders`. Public sign-ups are turned off in Supabase (Authentication, Sign In / Providers, Allow new users to sign up: off), so founder accounts are only created by hand (Authentication, Add user) with a password. With the variables unset the page runs as a preview on made-up data and saves nothing.
