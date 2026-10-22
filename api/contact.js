@@ -6,6 +6,10 @@
 //   CONTACT_FROM    optional, sender of the lead email (default "Zameel website <website@zameel.cx>")
 //   CONFIRM_FROM    optional, sender of the visitor's confirmation (default "Zameel <info@zameel.cx>")
 //   SITE_URL        optional, used for the logo in the confirmation (default https://zameel.cx)
+//   TURNSTILE_SECRET_KEY  optional, Cloudflare Turnstile secret; when set, every send must pass the check
+//
+// Abuse limits (per server instance, so best effort; the Vercel Firewall rule in README.md is the hard limit):
+// 5 sends per visitor IP every 10 minutes, and at most one confirmation email per address per day.
 
 function clean(v, max) {
   return String(v == null ? "" : v).replace(/[\r\n\t]+/g, " ").trim().slice(0, max);
@@ -60,6 +64,43 @@ function confirmation(name, lang) {
   return { subject: t.subject, html, text };
 }
 
+const WINDOW_MS = 10 * 60 * 1000, MAX_PER_WINDOW = 5, DAY_MS = 24 * 60 * 60 * 1000;
+const hits = new Map(), confirmed = new Map();
+function limited(ip, now) {
+  const recent = (hits.get(ip) || []).filter((t) => now - t < WINDOW_MS);
+  recent.push(now); hits.set(ip, recent);
+  if (hits.size > 5000) hits.clear();
+  return recent.length > MAX_PER_WINDOW;
+}
+function firstConfirmationToday(email, now) {
+  const k = email.toLowerCase(), last = confirmed.get(k);
+  if (last && now - last < DAY_MS) return false;
+  confirmed.set(k, now);
+  if (confirmed.size > 5000) confirmed.clear();
+  return true;
+}
+// Requests from a browser carry an Origin; only our own pages (and Vercel previews) may post.
+function allowedOrigin(origin) {
+  if (!origin) return true;
+  try {
+    const h = new URL(origin).hostname;
+    return h === "zameel.cx" || h.endsWith(".zameel.cx") || h.endsWith(".vercel.app") || h === "localhost";
+  } catch (_) { return false; }
+}
+async function passesTurnstile(token, ip) {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true;
+  if (!token) return false;
+  try {
+    const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ secret, response: token, remoteip: ip }),
+    });
+    return !!(await r.json()).success;
+  } catch (e) { console.error("Turnstile check failed", e.message); return false; }
+}
+
 async function send(key, payload) {
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -74,14 +115,28 @@ module.exports = async function handler(req, res) {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ ok: false, error: "method_not_allowed" });
   }
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return res.status(500).json({ ok: false, error: "not_configured" });
-
   let body = req.body || {};
   if (typeof body === "string") { try { body = JSON.parse(body); } catch (_) { body = {}; } }
 
+  // A plain form post (the page's script hadn't loaded yet) gets sent back to the page, not shown JSON.
+  const plain = !/json/.test(req.headers["content-type"] || "");
+  const page = body.lang === "ar" ? "/ar/" : "/";
+  const reply = (status, ok, error) => {
+    if (plain) { res.setHeader("Location", page + "?sent=" + (ok ? "1" : "0") + "#contact"); return res.status(303).end(); }
+    return res.status(status).json(ok ? { ok: true } : { ok: false, error });
+  };
+
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return reply(500, false, "not_configured");
+  if (!allowedOrigin(req.headers.origin)) return reply(403, false, "forbidden");
+
+  const ip = String(req.headers["x-forwarded-for"] || req.headers["x-real-ip"] || "").split(",")[0].trim() || "unknown";
+  const now = Date.now();
+  if (limited(ip, now)) return reply(429, false, "too_many");
+
   // Honeypot: real visitors never see or fill this field.
-  if (clean(body.website, 200)) return res.status(200).json({ ok: true });
+  if (clean(body.website, 200)) return reply(200, true);
+  if (!(await passesTurnstile(clean(body["cf-turnstile-response"], 2048), ip))) return reply(400, false, "check_failed");
 
   const name = clean(body.name, 120);
   const email = clean(body.email, 200);
@@ -91,7 +146,7 @@ module.exports = async function handler(req, res) {
   const lang = body.lang === "ar" ? "Arabic" : "English";
 
   if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-    return res.status(400).json({ ok: false, error: "invalid" });
+    return reply(400, false, "invalid");
   }
 
   const rows = [["Name", name], ["Company", company || "-"], ["Email", email], ["WhatsApp", whatsapp || "-"],
@@ -112,10 +167,12 @@ module.exports = async function handler(req, res) {
     });
   } catch (e) {
     console.error("Resend error (lead)", e.message);
-    return res.status(502).json({ ok: false, error: "send_failed" });
+    return reply(502, false, "send_failed");
   }
 
   // The lead is safe in the inbox at this point; a failed confirmation is logged but not shown as an error.
+  // One confirmation per address per day, so the form can't be used to flood someone's inbox from zameel.cx.
+  if (!firstConfirmationToday(email, now)) return reply(200, true);
   try {
     const c = confirmation(name, "en"); // English only; pass body.lang to match the page language instead
     await send(key, {
@@ -129,5 +186,5 @@ module.exports = async function handler(req, res) {
   } catch (e) {
     console.error("Resend error (confirmation)", e.message);
   }
-  return res.status(200).json({ ok: true });
+  return reply(200, true);
 };

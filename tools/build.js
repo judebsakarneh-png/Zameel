@@ -11,6 +11,38 @@ const DASH = require("./dashboard-content.js");
 const SITE = "https://zameel.cx";
 const TODAY = new Date().toISOString().slice(0, 10);
 
+// Assets: fonts.css + site.css are bundled into one minified stylesheet and each script is minified into
+// assets/dist/ (esbuild through npx). Pages link them with a content hash, so a new deploy is never served
+// stale from a visitor's cache. If esbuild can't run, the files are copied unminified.
+const crypto = require("crypto");
+const { execFileSync } = require("child_process");
+const DIST = path.join(root, "assets/dist");
+fs.mkdirSync(DIST, { recursive: true });
+function minify(srcs, out, loader) {
+  const joined = srcs.map((f) => fs.readFileSync(path.join(root, f), "utf8")).join("\n");
+  let code = joined;
+  try {
+    code = execFileSync("npx", ["--yes", "esbuild@0.24.0", "--minify", "--loader=" + loader, loader === "js" ? "--target=es2017" : "--target=chrome90,safari14"],
+      { input: joined, encoding: "utf8", stdio: ["pipe", "pipe", "inherit"] });
+  } catch (e) { console.warn("esbuild unavailable, copying " + out + " unminified"); }
+  fs.writeFileSync(path.join(DIST, out), code);
+  return "/assets/dist/" + out + "?v=" + crypto.createHash("sha1").update(code).digest("hex").slice(0, 10);
+}
+const ASSET = { css: minify(["assets/css/fonts.css", "assets/css/site.css"], "site.min.css", "css") };
+["consent", "character", "common", "site", "dashboard"].forEach((n) => { ASSET[n + ".js"] = minify(["assets/js/" + n + ".js"], n + ".min.js", "js"); });
+// Fonts the first screen needs, fetched before the stylesheet asks for them.
+const PRELOAD = {
+  en: ["inter-normal-latin.woff2"],
+  ar: ["tajawal-800-arabic.woff2", "tajawal-400-arabic.woff2"],
+};
+// Cloudflare Turnstile (free bot check on the contact form). Off while empty: paste the site key from
+// dash.cloudflare.com > Turnstile here, and set TURNSTILE_SECRET_KEY in Vercel, then rebuild.
+const TURNSTILE_SITE_KEY = "";
+const turnstile = (lang) => TURNSTILE_SITE_KEY
+  ? `<div class="field full cf-turnstile" data-sitekey="${TURNSTILE_SITE_KEY}" data-language="${lang}" data-size="flexible"></div>\n        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>`
+  : "";
+const preload = (lang) => PRELOAD[lang].map((f) => `<link rel="preload" href="/assets/fonts/${f}" as="font" type="font/woff2" crossorigin>`).join("\n");
+
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const pre = (lang) => (lang === "ar" ? "/ar/" : "/");
 const url = (lang, p) => pre(lang) + p;                 // p is "" or "services/x/"
@@ -43,8 +75,8 @@ function head(lang, p, title, desc, jsonld, opts = {}) {
 <meta name="theme-color" content="#0E1D70">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zameel">
-<meta property="og:locale" content="${lang === "ar" ? "ar_AR" : "en_US"}">
-<meta property="og:locale:alternate" content="${lang === "ar" ? "en_US" : "ar_AR"}">
+<meta property="og:locale" content="${lang === "ar" ? "ar_AE" : "en_US"}">
+<meta property="og:locale:alternate" content="${lang === "ar" ? "en_US" : "ar_AE"}">
 <meta property="og:url" content="${self}">
 <meta property="og:title" content="${esc(opts.ogTitle || title)}">
 <meta property="og:description" content="${esc(desc)}">
@@ -63,10 +95,8 @@ ${JSON.stringify(jsonld, null, 2)}
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap">
-<link rel="stylesheet" href="/assets/css/site.css">
+${preload(lang)}
+<link rel="stylesheet" href="${ASSET.css}">
 </head>
 <body${opts.bodyClass ? ` class="${opts.bodyClass}"` : ""}>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -113,16 +143,16 @@ function footer(lang, scripts) {
       <a class="foot-mail" href="mailto:info@zameel.cx" dir="ltr">info@zameel.cx</a>
     </div>
     <nav class="foot-links" aria-label="${lang === "ar" ? "روابط التذييل" : "Footer"}">
-      <div><h4>${n.fServices}</h4>
+      <div><p class="fh">${n.fServices}</p>
 ${svc}
       </div>
-      <div><h4>${n.fCompany}</h4>
+      <div><p class="fh">${n.fCompany}</p>
         <a href="${url(lang, "dashboard/")}">${n.dashboard}</a>
         <a href="${h}#trained">${n.quality}</a>
         <a href="${h}#record">${n.record}</a>
         <a href="${h}#contact">${n.contact}</a>
       </div>
-      <div><h4>${n.fMore}</h4>
+      <div><p class="fh">${n.fMore}</p>
         <a href="${url(lang, "privacy/")}">${esc(u.privacy)}</a>
         <a href="#" id="cookie-settings">${esc(u.cookies)}</a>
         <a href="https://www.linkedin.com/company/zameelcx/" rel="noopener" target="_blank" translate="no">LinkedIn</a>
@@ -132,8 +162,8 @@ ${svc}
     <p class="foot-meta"><span>${esc(u.foot)}</span><span>© <span id="yr">2026</span> ${lang === "ar" ? "زميل" : "Zameel"}</span></p>
   </div>
 </footer>
-<script src="/assets/js/consent.js"></script>
-${scripts.map((s) => `<script src="/assets/js/${s}"${s === "character.js" ? ' data-mark="/assets/brand/zameel-mark.svg"' : ""}></script>`).join("\n")}
+<script src="${ASSET["consent.js"]}"></script>
+${scripts.map((s) => `<script src="${ASSET[s]}"${s === "character.js" ? ' data-mark="/assets/brand/zameel-mark.svg"' : ""}></script>`).join("\n")}
 </body>
 </html>
 `;
@@ -188,6 +218,7 @@ function localise(html, lang) {
 function homePage(lang) {
   let body = fs.readFileSync(path.join(root, "src/home.html"), "utf8");
   if (lang === "ar") body = applyPairs(body, HOME_AR, "Arabic homepage");
+  body = body.replace("<!--turnstile-->", turnstile(lang));
   const m = HOME_META[lang];
   return head(lang, "", m.title, m.desc, homeLd(lang, body), { ogTitle: m.og }) + header(lang, "", true) + "\n" + localise(body, lang) + "\n\n"
     + footer(lang, ["character.js", "common.js", "site.js"]);
@@ -371,8 +402,8 @@ write("404.html", `<!doctype html>
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,800;1,700&family=Tajawal:wght@500;800&display=swap">
-<link rel="stylesheet" href="/assets/css/site.css">
+${preload("en")}
+<link rel="stylesheet" href="${ASSET.css}">
 </head>
 <body class="nf">
 <main class="nf-in">
@@ -386,8 +417,8 @@ write("404.html", `<!doctype html>
   </div>
 </main>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
-<script src="/assets/js/character.js" data-mark="/assets/brand/zameel-mark.svg"></script>
-<script src="/assets/js/common.js"></script>
+<script src="${ASSET["character.js"]}" data-mark="/assets/brand/zameel-mark.svg"></script>
+<script src="${ASSET["common.js"]}"></script>
 </body>
 </html>
 `);

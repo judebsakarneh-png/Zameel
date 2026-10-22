@@ -178,8 +178,8 @@ module.exports = [
   ['<div><b>1 hour</b><span>First reply on email, in covered hours</span></div>', '<div><b>ساعة واحدة</b><span>أول رد على البريد، ضمن ساعات التغطية</span></div>'],
   ['<div><b>100%</b><span>Arabic answered by a native speaker</span></div>', '<div><b>100%</b><span>رسائل عربية يرد عليها متحدث أصلي</span></div>'],
   ['<div><b>Weekly</b><span>Performance report on your account</span></div>', '<div><b>أسبوعي</b><span>تقرير أداء عن حسابكم</span></div>'],
-  ['Typical desk: email figures from SuperOffice\'s study of 1,000 companies (2018); the evening figure is for a desk that closes at 5pm. With Zameel: the service levels above.',
-   'المكتب المعتاد: أرقام البريد من دراسة SuperOffice على 1,000 شركة (2018)، ورقم المساء لمكتب يغلق الساعة 5 مساءً. مع زميل: مستويات الخدمة أعلاه.'],
+  ['Typical desk: email figures from <a href="https://www.superoffice.com/blog/customer-service-benchmark/" rel="noopener" target="_blank">SuperOffice\'s study of 1,000 companies</a> (2018); the evening figure is for a desk that closes at 5pm. With Zameel: the service levels above.',
+   'المكتب المعتاد: أرقام البريد من <a href="https://www.superoffice.com/blog/customer-service-benchmark/" rel="noopener" target="_blank" lang="en">دراسة SuperOffice على 1,000 شركة</a> (2018)، ورقم المساء لمكتب يغلق الساعة 5 مساءً. مع زميل: مستويات الخدمة أعلاه.'],
 
   // dashboard section
   ['Your account, <em>open any time.</em>', 'حسابكم، <em>مفتوح في أي وقت.</em>'],
@@ -271,14 +271,14 @@ module.exports = [
 
   // contact
   ['<p class="tag-line">Your operations. Our people. One standard.</p>', '<p class="tag-line">عملياتكم. فريقنا. معيار واحد.</p>'],
-  ['<p>Or email <span class="mail">info@zameel.cx</span></p>', '<p>أو راسلونا على <span class="mail" dir="ltr">info@zameel.cx</span></p>'],
+  ['<p>Or email <a class="mail" href="mailto:info@zameel.cx">info@zameel.cx</a></p>', '<p>أو راسلونا على <a class="mail" href="mailto:info@zameel.cx" dir="ltr">info@zameel.cx</a></p>'],
   ['<p class="svc">Messaging · Email · Voice · Back-office · Arabic and English</p>', '<p class="svc">المحادثات · البريد · المكالمات · الأعمال المكتبية · بالعربية والإنجليزية</p>'],
   ['<h2 id="ct-h">Tell us where your support hurts.</h2>', '<h2 id="ct-h">أخبرونا أين تتعب خدمة عملائكم.</h2>'],
   ['<p>Share a few details. A senior manager replies within one working day to set up a 30-minute call.</p>', '<p>شاركونا بعض التفاصيل، ويرد عليكم أحد كبار المدراء خلال يوم عمل واحد لترتيب مكالمة مدتها 30 دقيقة.</p>'],
   ['<label for="f-name">Your name</label>', '<label for="f-name">الاسم</label>'],
   ['<label for="f-company">Company</label>', '<label for="f-company">الشركة</label>'],
   ['<label for="f-email">Work email</label>', '<label for="f-email">البريد الإلكتروني للعمل</label>'],
-  ['placeholder="name@company.com" required>', 'placeholder="name@company.com" dir="ltr" required>'],
+  ['placeholder="name@company.com" required aria-describedby="e-email">', 'placeholder="name@company.com" dir="ltr" required aria-describedby="e-email">'],
   ['<label for="f-wa">WhatsApp number</label>', '<label for="f-wa">رقم واتساب</label>'],
   ['autocomplete="tel">', 'autocomplete="tel" dir="ltr">'],
   ['<label for="f-need">What do you need help with?</label>', '<label for="f-need">بماذا تحتاجون المساعدة؟</label>'],
@@ -291,6 +291,9 @@ module.exports = [
   ['Watch the film <small>0:22</small>', 'شاهدوا الفيلم <small>0:22</small>'],
   ['Zameel in <em>22 seconds.</em>', 'زميل في <em>22 ثانية.</em>'],
   ['How a team that works your hours, in your tools and in both languages fits into your day.', 'كيف يندمج في يومكم فريق يعمل في ساعاتكم، داخل أدواتكم، وباللغتين.'],
+  ['<input type="hidden" name="lang" value="en">', '<input type="hidden" name="lang" value="ar">'],
+  ['aria-label="Sample conversation"', 'aria-label="محادثة نموذجية"'],
+  ['aria-label="What the film says"', 'aria-label="ما يقوله الفيلم"'],
   ['aria-label="22 second film about how Zameel works"', 'aria-label="فيلم من 22 ثانية عن طريقة عمل زميل"'],
   ['>Your customers don’t keep office hours.<', '>عملاؤكم لا يلتزمون بساعات الدوام.<'],
   ['>Shifts planned around when your customers write and call.<', '>ورديات مخططة حسب الأوقات التي يتواصل فيها عملاؤكم.<'],

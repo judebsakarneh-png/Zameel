@@ -1,6 +1,6 @@
 /* Cookie consent + Google Analytics (GA4 Consent Mode).
-   Visitors whose device is on a European time zone (EU/UK rules) see the banner and
-   analytics cookies stay off until they click Accept. Everyone else is counted by default. The choice is kept in
+   Visitors whose device is on a European or Gulf time zone (EU/UK rules, Saudi and UAE data protection laws)
+   see the banner and analytics cookies stay off until they click Accept. Everyone else is counted by default. The choice is kept in
    localStorage; the "Cookie settings" link in the footer (#cookie-settings) reopens the banner.
    Loaded on every page before main.js / page.js. */
 (function () {
@@ -21,14 +21,15 @@
   function save(v) { try { localStorage.setItem(KEY, v); } catch (_) {} }
   function grant() { window.gtag("consent", "update", { analytics_storage: "granted" }); }
 
-  // European time zones (plus the Atlantic islands that belong to EU states) need opt-in.
-  function inEurope() {
+  // European time zones (plus the Atlantic islands that belong to EU states) and the Gulf need opt-in.
+  function needsOptIn() {
     try {
       var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-      return /^Europe\//.test(tz) || /^Atlantic\/(Canary|Madeira|Azores|Faroe|Reykjavik)$/.test(tz);
+      return /^Europe\//.test(tz) || /^Atlantic\/(Canary|Madeira|Azores|Faroe|Reykjavik)$/.test(tz) ||
+        /^Asia\/(Riyadh|Dubai|Qatar|Kuwait|Bahrain|Muscat)$/.test(tz);
     } catch (_) { return true; }
   }
-  var optIn = inEurope();
+  var optIn = needsOptIn();
   var choice = read();
   if (choice === "granted" || (!choice && !optIn)) grant();
 

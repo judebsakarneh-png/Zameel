@@ -32,7 +32,7 @@
         <video id="film-v" src="/assets/video/zameel-film.mp4" poster="/assets/video/zameel-film-poster.jpg" muted playsinline loop preload="metadata" aria-label="22 second film about how Zameel works"></video>
       </div>
       <p class="film-cap" id="film-cap" aria-hidden="true"></p>
-      <ol class="film-caps" id="film-caps" hidden>
+      <ol class="film-caps vh" id="film-caps" aria-label="What the film says">
         <li data-a="0.25" data-b="1.95">Your customers don’t keep office hours.</li>
         <li data-a="2.15" data-b="4.95">Shifts planned around when your customers write and call.</li>
         <li data-a="5.15" data-b="8.9">WhatsApp, email and calls, in one thread with one team.</li>
@@ -96,8 +96,8 @@
         <div class="phone" role="group" aria-label="Example support chat. Pick a question to see how an agent replies.">
           <div class="scr">
             <div class="island"></div>
-            <div class="hdr"><div class="lg"><img src="/assets/brand/zameel-mark.svg" alt=""></div><div><b class="hn">Your brand</b><span><i></i>Online · answered by Zameel</span></div></div>
-            <div class="msgs" id="msgs" aria-live="polite">
+            <div class="hdr"><div class="lg"><img src="/assets/brand/zameel-mark.svg" alt="" width="26" height="26"></div><div><b class="hn">Your brand</b><span><i></i>Online · answered by Zameel</span></div></div>
+            <div class="msgs" id="msgs" aria-live="polite" tabindex="0" aria-label="Sample conversation">
               <div class="bub c">Hi, my order hasn't arrived yet.<small>10:02</small></div>
               <div class="bub a">Sorry about that! It's out for delivery today. Tracking link sent.<small>10:03 ✓✓</small></div>
               <div class="bub c ar" lang="ar">شكراً، هل يمكنني تغيير العنوان؟<small>10:04</small></div>
@@ -297,7 +297,7 @@
         <div><b>100%</b><span>Arabic answered by a native speaker</span></div>
         <div><b>Weekly</b><span>Performance report on your account</span></div>
       </div>
-      <p class="fine std-note">Typical desk: email figures from SuperOffice's study of 1,000 companies (2018); the evening figure is for a desk that closes at 5pm. With Zameel: the service levels above.</p>
+      <p class="fine std-note">Typical desk: email figures from <a href="https://www.superoffice.com/blog/customer-service-benchmark/" rel="noopener" target="_blank">SuperOffice's study of 1,000 companies</a> (2018); the evening figure is for a desk that closes at 5pm. With Zameel: the service levels above.</p>
     </div>
   </section>
   <section class="scene mist" id="dashboard" data-scene aria-labelledby="db-h">
@@ -417,19 +417,21 @@
         <div class="mini" aria-hidden="true"><canvas class="char" id="end-agent"></canvas></div>
         <img class="logo" src="/assets/brand/zameel-logo-full-colour.svg" alt="Zameel زميل" width="248" height="80">
         <p class="tag-line">Your operations. Our people. One standard.</p>
-        <p>Or email <span class="mail">info@zameel.cx</span></p>
+        <p>Or email <a class="mail" href="mailto:info@zameel.cx">info@zameel.cx</a></p>
         <p class="svc">Messaging · Email · Voice · Back-office · Arabic and English</p>
       </div>
-      <form class="lead rv" id="lead" novalidate data-endpoint="/api/contact">
+      <form class="lead rv" id="lead" novalidate method="post" action="/api/contact" data-endpoint="/api/contact">
         <h2 id="ct-h">Tell us where your support hurts.</h2>
         <p>Share a few details. A senior manager replies within one working day to set up a 30-minute call.</p>
-        <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required aria-describedby="e-name"><span class="err" id="e-name" aria-live="polite"></span></div>
         <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div>
-        <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="name@company.com" required><span class="err" id="e-email" aria-live="polite"></span></div>
+        <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="name@company.com" required aria-describedby="e-email"><span class="err" id="e-email" aria-live="polite"></span></div>
         <div class="field"><label for="f-wa">WhatsApp number</label><input id="f-wa" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel"></div>
         <div class="field full"><label for="f-need">What do you need help with?</label>
           <select id="f-need" name="need"><option>Customer support</option><option>Back-office</option><option>Peak-season cover</option><option>Not sure yet</option></select>
         </div>
+        <input type="hidden" name="lang" value="en">
+        <!--turnstile-->
         <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
         <div class="form-foot">
           <button class="btn btn-navy" type="submit">Request my call <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>

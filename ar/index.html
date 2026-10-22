@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#0E1D70">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zameel">
-<meta property="og:locale" content="ar_AR">
+<meta property="og:locale" content="ar_AE">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:url" content="https://zameel.cx/ar/">
 <meta property="og:title" content="زميل | عملياتكم. فريقنا. معيار واحد.">
@@ -227,10 +227,9 @@
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap">
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="preload" href="/assets/fonts/tajawal-800-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/tajawal-400-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/dist/site.min.css?v=fb1cbf90ff">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -290,7 +289,7 @@
         <video id="film-v" src="/assets/video/zameel-film.mp4" poster="/assets/video/zameel-film-poster.jpg" muted playsinline loop preload="metadata" aria-label="فيلم من 22 ثانية عن طريقة عمل زميل"></video>
       </div>
       <p class="film-cap" id="film-cap" aria-hidden="true"></p>
-      <ol class="film-caps" id="film-caps" hidden>
+      <ol class="film-caps vh" id="film-caps" aria-label="ما يقوله الفيلم">
         <li data-a="0.25" data-b="1.95">عملاؤكم لا يلتزمون بساعات الدوام.</li>
         <li data-a="2.15" data-b="4.95">ورديات مخططة حسب الأوقات التي يتواصل فيها عملاؤكم.</li>
         <li data-a="5.15" data-b="8.9">واتساب وبريد ومكالمات، في محادثة واحدة مع فريق واحد.</li>
@@ -354,8 +353,8 @@
         <div class="phone" role="group" aria-label="محادثة دعم تجريبية. اختاروا سؤالًا لتروا كيف يرد الموظف.">
           <div class="scr">
             <div class="island"></div>
-            <div class="hdr"><div class="lg"><img src="/assets/brand/zameel-mark.svg" alt=""></div><div><b class="hn">علامتكم</b><span><i></i>متصل · يرد عليه فريق زميل</span></div></div>
-            <div class="msgs" id="msgs" aria-live="polite">
+            <div class="hdr"><div class="lg"><img src="/assets/brand/zameel-mark.svg" alt="" width="26" height="26"></div><div><b class="hn">علامتكم</b><span><i></i>متصل · يرد عليه فريق زميل</span></div></div>
+            <div class="msgs" id="msgs" aria-live="polite" tabindex="0" aria-label="محادثة نموذجية">
               <div class="bub c">مرحبًا، طلبي لم يصل بعد.<small>10:02</small></div>
               <div class="bub a">نعتذر عن ذلك! طلبكم خرج للتوصيل اليوم، وأرسلنا رابط التتبع.<small>10:03 ✓✓</small></div>
               <div class="bub c en" lang="en" dir="ltr">Thanks, can I change the address?<small>10:04</small></div>
@@ -555,7 +554,7 @@
         <div><b>100%</b><span>رسائل عربية يرد عليها متحدث أصلي</span></div>
         <div><b>أسبوعي</b><span>تقرير أداء عن حسابكم</span></div>
       </div>
-      <p class="fine std-note">المكتب المعتاد: أرقام البريد من دراسة SuperOffice على 1,000 شركة (2018)، ورقم المساء لمكتب يغلق الساعة 5 مساءً. مع زميل: مستويات الخدمة أعلاه.</p>
+      <p class="fine std-note">المكتب المعتاد: أرقام البريد من <a href="https://www.superoffice.com/blog/customer-service-benchmark/" rel="noopener" target="_blank" lang="en">دراسة SuperOffice على 1,000 شركة</a> (2018)، ورقم المساء لمكتب يغلق الساعة 5 مساءً. مع زميل: مستويات الخدمة أعلاه.</p>
     </div>
   </section>
   <section class="scene mist" id="dashboard" data-scene aria-labelledby="db-h">
@@ -675,19 +674,21 @@
         <div class="mini" aria-hidden="true"><canvas class="char" id="end-agent"></canvas></div>
         <img class="logo" src="/assets/brand/zameel-logo-full-colour.svg" alt="Zameel زميل" width="248" height="80">
         <p class="tag-line">عملياتكم. فريقنا. معيار واحد.</p>
-        <p>أو راسلونا على <span class="mail" dir="ltr">info@zameel.cx</span></p>
+        <p>أو راسلونا على <a class="mail" href="mailto:info@zameel.cx" dir="ltr">info@zameel.cx</a></p>
         <p class="svc">المحادثات · البريد · المكالمات · الأعمال المكتبية · بالعربية والإنجليزية</p>
       </div>
-      <form class="lead rv" id="lead" novalidate data-endpoint="/api/contact">
+      <form class="lead rv" id="lead" novalidate method="post" action="/api/contact" data-endpoint="/api/contact">
         <h2 id="ct-h">أخبرونا أين تتعب خدمة عملائكم.</h2>
         <p>شاركونا بعض التفاصيل، ويرد عليكم أحد كبار المدراء خلال يوم عمل واحد لترتيب مكالمة مدتها 30 دقيقة.</p>
-        <div class="field"><label for="f-name">الاسم</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-name">الاسم</label><input id="f-name" name="name" autocomplete="name" required aria-describedby="e-name"><span class="err" id="e-name" aria-live="polite"></span></div>
         <div class="field"><label for="f-company">الشركة</label><input id="f-company" name="company" autocomplete="organization"></div>
-        <div class="field"><label for="f-email">البريد الإلكتروني للعمل</label><input id="f-email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="name@company.com" dir="ltr" required><span class="err" id="e-email" aria-live="polite"></span></div>
+        <div class="field"><label for="f-email">البريد الإلكتروني للعمل</label><input id="f-email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="name@company.com" dir="ltr" required aria-describedby="e-email"><span class="err" id="e-email" aria-live="polite"></span></div>
         <div class="field"><label for="f-wa">رقم واتساب</label><input id="f-wa" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" dir="ltr"></div>
         <div class="field full"><label for="f-need">بماذا تحتاجون المساعدة؟</label>
           <select id="f-need" name="need"><option value="Customer support">خدمة العملاء</option><option value="Back-office">الأعمال المكتبية</option><option value="Peak-season cover">تغطية المواسم</option><option value="Not sure yet">لم نقرر بعد</option></select>
         </div>
+        <input type="hidden" name="lang" value="ar">
+        
         <div class="hp" aria-hidden="true"><label for="f-website">الموقع</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
         <div class="form-foot">
           <button class="btn btn-navy" type="submit">اطلبوا مكالمتكم <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
@@ -709,19 +710,19 @@
       <a class="foot-mail" href="mailto:info@zameel.cx" dir="ltr">info@zameel.cx</a>
     </div>
     <nav class="foot-links" aria-label="روابط التذييل">
-      <div><h4>الخدمات</h4>
+      <div><p class="fh">الخدمات</p>
         <a href="/ar/services/customer-support-outsourcing/">تعهيد خدمة العملاء</a>
         <a href="/ar/services/whatsapp-support/">دعم واتساب</a>
         <a href="/ar/services/back-office/">الأعمال المكتبية</a>
         <a href="/ar/services/peak-season-support/">تغطية المواسم</a>
       </div>
-      <div><h4>زميل</h4>
+      <div><p class="fh">زميل</p>
         <a href="/ar/dashboard/">لوحة المتابعة</a>
         <a href="/ar/#trained">الجودة</a>
         <a href="/ar/#record">سجلّنا</a>
         <a href="/ar/#contact">تواصلوا معنا</a>
       </div>
-      <div><h4>المزيد</h4>
+      <div><p class="fh">المزيد</p>
         <a href="/ar/privacy/">الخصوصية</a>
         <a href="#" id="cookie-settings">إعدادات ملفات تعريف الارتباط</a>
         <a href="https://www.linkedin.com/company/zameelcx/" rel="noopener" target="_blank" translate="no">LinkedIn</a>
@@ -731,9 +732,9 @@
     <p class="foot-meta"><span>عمليات خدمة العملاء بالعربية والإنجليزية.</span><span>© <span id="yr">2026</span> زميل</span></p>
   </div>
 </footer>
-<script src="/assets/js/consent.js"></script>
-<script src="/assets/js/character.js" data-mark="/assets/brand/zameel-mark.svg"></script>
-<script src="/assets/js/common.js"></script>
-<script src="/assets/js/site.js"></script>
+<script src="/assets/dist/consent.min.js?v=dade6e7a64"></script>
+<script src="/assets/dist/character.min.js?v=a935a35a4d" data-mark="/assets/brand/zameel-mark.svg"></script>
+<script src="/assets/dist/common.min.js?v=d3d8ab82e6"></script>
+<script src="/assets/dist/site.min.js?v=da501a82a9"></script>
 </body>
 </html>

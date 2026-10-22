@@ -25,9 +25,12 @@
   addEventListener("scroll", onScroll, { passive: true });
 
   /* ---------- agents (halftone characters) ---------- */
-  var agents = [], pointer = null, raf = 0;
+  var agents = [], pointer = null, raf = 0, lastFrame = 0;
+  // Phones: a slightly coarser dot grid (about 40% fewer dots to draw) on what is already a small canvas.
+  var phone = window.matchMedia("(hover: none) and (max-width: 700px)").matches;
   function addAgent(canvas, opts) {
     if (!canvas || !window.ZameelAgent) return null;
+    if (phone) opts.spacing = Math.round((opts.spacing || 7) * 1.3);
     var a = new ZameelAgent(canvas, opts);
     a.base = { lookX: opts.lookX || 0, lookY: opts.lookY || 0, smile: opts.smile || 1.15, tilt: 0 };
     a.t = Object.assign({}, a.base);
@@ -38,35 +41,52 @@
     new IntersectionObserver(function (es) { a.visible = es[0].isIntersecting; if (a.visible) { a.resize(); a.render(); kick(); } }).observe(canvas);
     return a;
   }
-  function kick() { if (!raf && !calm) raf = requestAnimationFrame(tick); }
+  // Touch screens get no idle sway (it re-drew thousands of dots every frame); the loop stops when every
+  // agent has settled and wakes again for the next blink, a hover or the mouse.
+  var touch = window.matchMedia("(hover: none)").matches, wake = 0;
+  function kick() { if (!raf && !calm) { clearTimeout(wake); raf = requestAnimationFrame(tick); } }
   function tick(now) {
     raf = 0;
-    var any = false;
+    if (touch && now - lastFrame < 30) { raf = requestAnimationFrame(tick); return; }  // 30fps is plenty for a blink on a phone
+    lastFrame = now;
+    var busy = false, nextBlink = Infinity;
     agents.forEach(function (a) {
       if (!a.visible) return;
-      any = true;
-      var tx = a.base.lookX, ty = a.base.lookY;
+      var tx = a.base.lookX, ty = a.base.lookY, following = false;
       if (a.follow && pointer && now - pointer.t < 4000) {
         var r = a.cv.getBoundingClientRect();
         tx = clamp((pointer.x - (r.left + r.width / 2)) / (innerWidth * .4), -1, 1);
         ty = clamp((pointer.y - (r.top + r.height * .42)) / (innerHeight * .45), -1, 1);
-      } else if (!pointer) {
+        following = true;
+      } else if (!pointer && !touch) {
         tx += .25 * Math.sin(now / 1900 + a.sp); ty += .15 * Math.sin(now / 2600);
+        following = true;
       }
       a.p.lookX += (tx - a.p.lookX) * .12;
       a.p.lookY += (ty - a.p.lookY) * .12;
       a.p.smile += (a.t.smile - a.p.smile) * .1;
-      var tilt = a.pulseAt > 0 ? -.09 * Math.sin(Math.PI * clamp((now - a.pulseAt) / 950, 0, 1)) : 0;
+      var pulsing = a.pulseAt > 0 && now - a.pulseAt < 950;
+      var tilt = pulsing ? -.09 * Math.sin(Math.PI * clamp((now - a.pulseAt) / 950, 0, 1)) : 0;
       a.p.tilt += (tilt - a.p.tilt) * .25;
       if (now > a.nextBlink) { a.blinkAt = now; a.nextBlink = now + 2600 + Math.random() * 3200; }
       var b = (now - a.blinkAt) / 160;
       a.p.blink = b > 0 && b < 1 ? Math.sin(Math.PI * b) : 0;
       a.render();
+      nextBlink = Math.min(nextBlink, a.nextBlink);
+      if (following || pulsing || a.p.blink > 0 || Math.abs(tx - a.p.lookX) > .003 || Math.abs(ty - a.p.lookY) > .003 ||
+          Math.abs(a.t.smile - a.p.smile) > .003 || Math.abs(a.p.tilt) > .002) busy = true;
     });
-    if (any) raf = requestAnimationFrame(tick);
+    if (busy) raf = requestAnimationFrame(tick);
+    else if (nextBlink < Infinity) wake = setTimeout(kick, Math.max(16, nextBlink - performance.now()));
   }
   addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") { pointer = { x: e.clientX, y: e.clientY, t: performance.now() }; kick(); } }, { passive: true });
-  addEventListener("resize", function () { agents.forEach(function (a) { a.resize(); a.render(); }); });
+  // Phones fire resize while scrolling (the address bar); redraw only on a real width change, and only what is on screen.
+  var lastW = innerWidth, rzT = 0;
+  addEventListener("resize", function () {
+    if (innerWidth === lastW) return;
+    lastW = innerWidth; clearTimeout(rzT);
+    rzT = setTimeout(function () { agents.forEach(function (a) { a.resize(); if (a.visible) a.render(); }); }, 120);
+  });
   function hoverSmile(el, a) {
     if (!el || !a) return;
     el.addEventListener("pointerenter", function () { a.t.smile = 1.35; a.pulseAt = performance.now(); kick(); });
@@ -134,7 +154,7 @@
     msgs.appendChild(b); msgs.scrollTop = msgs.scrollHeight;
   }
   async function typing(ms) {
-    var t = document.createElement("div"); t.className = "typing"; t.setAttribute("aria-label", L("Agent is typing", "الموظف يكتب"));
+    var t = document.createElement("div"); t.className = "typing"; t.setAttribute("role", "img"); t.setAttribute("aria-label", L("Agent is typing", "الموظف يكتب"));
     t.innerHTML = "<i></i><i></i><i></i>"; msgs.appendChild(t); msgs.scrollTop = msgs.scrollHeight;
     await wait(ms); t.remove();
   }
@@ -279,12 +299,22 @@
 
   /* ---------- form ---------- */
   var form = $("#lead");
+  // Back from a plain form post (sent before this script loaded): say how it went.
+  var sent = /[?&]sent=([01])/.exec(location.search);
+  if (sent) {
+    var d0 = $("#done");
+    d0.textContent = sent[1] === "1" ? L("Thank you. A senior manager will reply within one working day.", "شكرًا لكم. سيرد عليكم أحد كبار المدراء خلال يوم عمل واحد.")
+      : L("That didn't send. Please email info@zameel.cx and we'll reply within one working day.", "تعذّر الإرسال. راسلونا على info@zameel.cx وسنرد خلال يوم عمل واحد.");
+    d0.hidden = false;
+    history.replaceState(null, "", location.pathname + "#contact");
+  }
   form.addEventListener("submit", function (ev) {
     ev.preventDefault();
-    var email = $("#f-email"), name = $("#f-name"), err = $("#e-email"), done = $("#done");
-    err.textContent = "";
-    if (!name.value.trim()) { name.focus(); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { err.textContent = L("Enter a work email like name@company.com.", "اكتبوا بريدًا إلكترونيًا للعمل، مثل name@company.com"); email.focus(); return; }
+    var email = $("#f-email"), name = $("#f-name"), err = $("#e-email"), nerr = $("#e-name"), done = $("#done");
+    err.textContent = ""; nerr.textContent = "";
+    name.removeAttribute("aria-invalid"); email.removeAttribute("aria-invalid");
+    if (!name.value.trim()) { nerr.textContent = L("Please add your name.", "اكتبوا اسمكم من فضلكم."); name.setAttribute("aria-invalid", "true"); name.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { err.textContent = L("Enter a work email like name@company.com.", "اكتبوا بريدًا إلكترونيًا للعمل، مثل name@company.com"); email.setAttribute("aria-invalid", "true"); email.focus(); return; }
     if ($("#f-website").value) return;
     var endpoint = form.getAttribute("data-endpoint"), btn = $("button[type=submit]", form);
     var show = function (msg) { done.textContent = msg; done.hidden = false; };
@@ -532,7 +562,7 @@
   onScroll();
   var ready = window.ZameelAgent ? ZameelAgent.ready : Promise.resolve();
   Promise.all([ready, document.fonts ? document.fonts.ready : 0]).then(function () {
-    agents.forEach(function (a) { a.resize(); a.last = ""; a.render(); });
+    agents.forEach(function (a) { a.resize(); if (a.visible) a.render(); });
     drawDash(false); seatLayout(); seatDraw();
     kick();
   });

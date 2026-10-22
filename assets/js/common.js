@@ -6,6 +6,7 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var home = !!$("#hero.hero");
+  var touch = window.matchMedia("(hover: none)").matches; // no idle sway on phones: it redraws every frame
 
   /* ---------- nav ---------- */
   var nav = $("#nav"), prog = $("#nav .progress");
@@ -100,7 +101,7 @@
         var r = a.cv.getBoundingClientRect();
         tx = Math.max(-1, Math.min(1, (pointer.x - (r.left + r.width / 2)) / (innerWidth * .4)));
         ty = Math.max(-1, Math.min(1, (pointer.y - (r.top + r.height * .42)) / (innerHeight * .45)));
-      } else if (!pointer) { tx += .25 * Math.sin(now / 1900); ty = .15 * Math.sin(now / 2600); }
+      } else if (!pointer && !touch) { tx += .25 * Math.sin(now / 1900); ty = .15 * Math.sin(now / 2600); }
       a.p.lookX += (tx - a.p.lookX) * .12; a.p.lookY += (ty - a.p.lookY) * .12;
       if (now > a.nextBlink) { a.blinkAt = now; a.nextBlink = now + 2600 + Math.random() * 3200; }
       var b = (now - a.blinkAt) / 160;
@@ -112,14 +113,15 @@
   function kick() { if (!raf && !calm) raf = requestAnimationFrame(tick); }
   if (!home && window.ZameelAgent) {
     $$("canvas[data-agent]").forEach(function (cv) {
-      var a = new ZameelAgent(cv, { mode: cv.dataset.mode || "dark", spacing: +(cv.dataset.spacing || 7), view: cv.dataset.view ? JSON.parse(cv.dataset.view) : null });
+      var a = new ZameelAgent(cv, { mode: cv.dataset.mode || "dark", spacing: Math.round(+(cv.dataset.spacing || 7) * (window.matchMedia("(hover: none) and (max-width: 700px)").matches ? 1.3 : 1)), view: cv.dataset.view ? JSON.parse(cv.dataset.view) : null });
       a.base = +cv.dataset.agent || 0; a.p.lookX = a.base; a.p.smile = 1.2;
       a.nextBlink = performance.now() + 1200; a.blinkAt = -1; a.visible = false;
       agents.push(a);
       new IntersectionObserver(function (es) { a.visible = es[0].isIntersecting; if (a.visible) { a.resize(); a.render(); kick(); } }).observe(cv);
     });
     addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") { pointer = { x: e.clientX, y: e.clientY, t: performance.now() }; kick(); } }, { passive: true });
-    addEventListener("resize", function () { agents.forEach(function (a) { a.resize(); a.render(); }); });
+    var lastW = innerWidth;
+    addEventListener("resize", function () { if (innerWidth === lastW) return; lastW = innerWidth; agents.forEach(function (a) { a.resize(); a.render(); }); });
     var ready = ZameelAgent.ready || Promise.resolve();
     Promise.all([ready, document.fonts ? document.fonts.ready : 0]).then(function () { agents.forEach(function (a) { a.resize(); a.last = ""; a.render(); }); kick(); });
   }
@@ -164,7 +166,8 @@
       footEl.addEventListener("pointermove", function (e) { var r = fcv.getBoundingClientRect(); fp = { x: e.clientX - r.left, y: e.clientY - r.top }; requestAnimationFrame(drawFoot); });
       footEl.addEventListener("pointerleave", function () { fp = null; requestAnimationFrame(drawFoot); });
     }
-    addEventListener("resize", function () { if (fimg.complete) buildFoot(); });
+    var footW = innerWidth;
+    addEventListener("resize", function () { if (innerWidth !== footW && fimg.complete) { footW = innerWidth; buildFoot(); } });
   }
 
   var yr = $("#yr");
