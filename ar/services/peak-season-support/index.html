@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#0E1D70">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zameel">
-<meta property="og:locale" content="ar_AR">
+<meta property="og:locale" content="ar_AE">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:url" content="https://zameel.cx/ar/services/peak-season-support/">
 <meta property="og:title" content="دعم العملاء في رمضان والمواسم | زميل">
@@ -122,10 +122,9 @@
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap">
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="preload" href="/assets/fonts/tajawal-800-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/tajawal-400-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/dist/site.min.css?v=fb1cbf90ff">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -234,7 +233,7 @@
       <div class="rel">
         <a class="rcard" href="/ar/services/customer-support-outsourcing/"><span class="kicker">تعهيد خدمة العملاء</span><b>خدمة عملاء بالعربية والإنجليزية، تعمل كجزء من فريقكم.</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="rcard" href="/ar/services/whatsapp-support/"><span class="kicker">دعم واتساب والمحادثات</span><b>دعم عبر واتساب يرد خلال دقائق، بالعربية أو الإنجليزية.</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="rcard" href="/ar/services/back-office-kyc/"><span class="kicker">الأعمال المكتبية والاكتتاب</span><b>أعمال مكتبية وتحقق من الهوية ومطالبات، وفق قائمتكم.</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="rcard" href="/ar/services/back-office/"><span class="kicker">الأعمال المكتبية</span><b>أعمال مكتبية تُنجز وفق قائمتكم.</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </section>
@@ -259,19 +258,19 @@
       <a class="foot-mail" href="mailto:info@zameel.cx" dir="ltr">info@zameel.cx</a>
     </div>
     <nav class="foot-links" aria-label="روابط التذييل">
-      <div><h4>الخدمات</h4>
+      <div><p class="fh">الخدمات</p>
         <a href="/ar/services/customer-support-outsourcing/">تعهيد خدمة العملاء</a>
         <a href="/ar/services/whatsapp-support/">دعم واتساب</a>
-        <a href="/ar/services/back-office-kyc/">الأعمال المكتبية والتحقق</a>
+        <a href="/ar/services/back-office/">الأعمال المكتبية</a>
         <a href="/ar/services/peak-season-support/">تغطية المواسم</a>
       </div>
-      <div><h4>زميل</h4>
+      <div><p class="fh">زميل</p>
         <a href="/ar/dashboard/">لوحة المتابعة</a>
         <a href="/ar/#trained">الجودة</a>
         <a href="/ar/#record">سجلّنا</a>
         <a href="/ar/#contact">تواصلوا معنا</a>
       </div>
-      <div><h4>المزيد</h4>
+      <div><p class="fh">المزيد</p>
         <a href="/ar/privacy/">الخصوصية</a>
         <a href="#" id="cookie-settings">إعدادات ملفات تعريف الارتباط</a>
         <a href="https://www.linkedin.com/company/zameelcx/" rel="noopener" target="_blank" translate="no">LinkedIn</a>
@@ -281,8 +280,8 @@
     <p class="foot-meta"><span>عمليات خدمة العملاء بالعربية والإنجليزية.</span><span>© <span id="yr">2026</span> زميل</span></p>
   </div>
 </footer>
-<script src="/assets/js/consent.js"></script>
-<script src="/assets/js/character.js" data-mark="/assets/brand/zameel-mark.svg"></script>
-<script src="/assets/js/common.js"></script>
+<script src="/assets/dist/consent.min.js?v=dade6e7a64"></script>
+<script src="/assets/dist/character.min.js?v=a935a35a4d" data-mark="/assets/brand/zameel-mark.svg"></script>
+<script src="/assets/dist/common.min.js?v=d3d8ab82e6"></script>
 </body>
 </html>
