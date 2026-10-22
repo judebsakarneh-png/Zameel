@@ -18,6 +18,47 @@
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  /* ---------- mobile menu: burger + dropdown panel (visible <= 860px) ---------- */
+  if (nav) {
+    var nl = $(".nav-links", nav), ncta = $(".nav-in > .btn", nav), nlang = $(".nav-in > .lang", nav);
+    if (nl && nl.children.length) {
+      var isAr = document.documentElement.lang === "ar";
+      var burger = document.createElement("button");
+      burger.type = "button"; burger.className = "nav-burger";
+      burger.setAttribute("aria-expanded", "false");
+      burger.setAttribute("aria-controls", "nav-panel");
+      burger.setAttribute("aria-label", isAr ? "فتح القائمة" : "Open menu");
+      burger.innerHTML = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="ic-bars" d="M2.5 5h15M2.5 10h15M2.5 15h15"/><path class="ic-x" d="M4.5 4.5l11 11M15.5 4.5l-11 11"/></svg>';
+      var panel = document.createElement("div");
+      panel.className = "nav-panel"; panel.id = "nav-panel";
+      var plinks = document.createElement("div");
+      plinks.className = "nav-panel-links";
+      $$("a", nl).forEach(function (a) { var c = a.cloneNode(true); c.removeAttribute("class"); plinks.appendChild(c); });
+      panel.appendChild(plinks);
+      var pfoot = document.createElement("div");
+      pfoot.className = "nav-panel-foot";
+      if (ncta) { var cc = ncta.cloneNode(true); cc.classList.add("plain-btn"); pfoot.appendChild(cc); }
+      if (nlang) pfoot.appendChild(nlang.cloneNode(true));
+      panel.appendChild(pfoot);
+      ($(".nav-in", nav) || nav).appendChild(burger);
+      nav.appendChild(panel);
+
+      var navOpen = false;
+      var setNav = function (open) {
+        navOpen = open;
+        nav.classList.toggle("open", open);
+        burger.setAttribute("aria-expanded", open ? "true" : "false");
+        burger.setAttribute("aria-label", isAr ? (open ? "إغلاق القائمة" : "فتح القائمة") : (open ? "Close menu" : "Open menu"));
+        if (open) { var first = $("a", panel); if (first) first.focus({ preventScroll: true }); }
+      };
+      burger.addEventListener("click", function (e) { e.stopPropagation(); setNav(!navOpen); });
+      panel.addEventListener("click", function (e) { if (e.target.closest("a")) setNav(false); });
+      document.addEventListener("click", function (e) { if (navOpen && !nav.contains(e.target)) setNav(false); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && navOpen) { setNav(false); burger.focus(); } });
+      addEventListener("resize", function () { if (innerWidth > 860 && navOpen) setNav(false); });
+    }
+  }
+
   /* ---------- faq: animated, one open at a time ---------- */
   $$(".qa").forEach(function (qa) {
     $$("details", qa).forEach(function (d) {
